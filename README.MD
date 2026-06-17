@@ -30,11 +30,19 @@ Beberapa teknik manipulasi memori evasif yang sering digunakan meliputi:
 
 ## 🛠️ Arsitektur Teknologi
 
-Engram dibangun dengan memisahkan fungsi pemrosesan berat di backend dan visualisasi interaktif di frontend:
+Engram dibangun dengan arsitektur client-server yang berjalan sepenuhnya di lingkungan lokal pengguna untuk memastikan keamanan dan kecepatan data.
 
-* **Backend:** Python dengan **FastAPI** — Berperan sebagai core engine yang menangani upload file RAM dump besar, mengeksekusi modul Volatility 3 secara *asynchronous*, mem-parsing data teks/JSON mentah, serta melakukan integrasi ke *OSINT Threat Intelligence* (seperti VirusTotal).
-* **Frontend:** **React.js** & **Tailwind CSS** — Menghadirkan antarmuka dasbor ala *Security Operations Center* (SOC) yang responsif, scannable, dan cepat untuk melacak relasi PID, status memori jahat, dan indikator kompromi (IOC).
-* **Forensics Engine:** **Volatility 3** integration.
+*   **Backend Engine (Python & FastAPI):**
+    *   **Teknologi:** Menggunakan framework **FastAPI** dari Python.
+    *   **Peran:** Bertindak sebagai "mesin" utama yang berjalan di `localhost`. Backend ini menangani semua pemrosesan berat: menerima unggahan file *RAM dump*, menjalankan modul **Volatility 3** secara *asynchronous* di latar belakang, mem-parsing output data mentah (teks/JSON), dan mengintegrasikannya dengan *OSINT Threat Intelligence* (seperti VirusTotal).
+
+*   **Frontend UI (React.js):**
+    *   **Teknologi:** Dibangun sebagai *Single-Page Application* (SPA) menggunakan **React.js** dan di-styling dengan **Tailwind CSS**.
+    *   **Peran:** Menyajikan antarmuka pengguna (UI) berupa dasbor interaktif ala *Security Operations Center* (SOC) yang diakses melalui browser. Frontend berkomunikasi dengan backend FastAPI untuk menampilkan hasil analisis secara visual, responsif, dan mudah dipahami untuk melacak relasi PID, status memori jahat, dan indikator kompromi (IOC).
+
+*   **Forensics Engine:**
+    *   **Teknologi:** Integrasi langsung dengan **Volatility 3 Framework**.
+    *   **Peran:** Merupakan alat inti yang digunakan untuk melakukan ekstraksi dan analisis artefak dari memori dump.
 
 ---
 
@@ -46,4 +54,3 @@ Engram dibangun dengan memisahkan fungsi pemrosesan berat di backend dan visuali
 4. **IOC Automated List**: Ekstraksi otomatis indikator kompromi (IP, Domain, dan Hash) dibarengi dengan skor reputasi intelijen ancaman.
 
 ---
-

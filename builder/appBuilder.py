@@ -91,7 +91,7 @@ def main():
                 "--clean",
                 APP_PY
             ]
-            
+              
             
             subprocess.run(pyinstaller_cmd, cwd=BASE_DIR, shell=True, check=True)
             print(f"Backend berhasil di-build menjadi {exe_name}.")
