@@ -3,6 +3,7 @@ import sys
 import subprocess
 import csv
 from datetime import datetime
+import configparser
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -14,17 +15,18 @@ BACKEND_DIR = os.path.join(BASE_DIR, 'backend')
 APP_PY = os.path.join(BACKEND_DIR, 'src', 'app.py')
 
 def read_config():
-    """Membaca file konfigurasi sederhana tanpa section."""
-    config = {}
+    """Membaca file konfigurasi menggunakan configparser."""
     if not os.path.exists(CONFIG_FILE):
-        return config
-    
-    with open(CONFIG_FILE, 'r', encoding='utf-8') as f:
-        for line in f:
-            if '=' in line:
-                key, val = line.split('=', 1)
-                config[key.strip()] = val.strip()
-    return config
+        return {}
+
+    config = configparser.ConfigParser()
+    try:
+        with open(CONFIG_FILE, 'r', encoding='utf-8') as f:
+            # Menambahkan header dummy [DEFAULT] agar bisa dibaca configparser
+            config.read_string('[DEFAULT]\n' + f.read())
+        return dict(config['DEFAULT'])
+    except Exception:
+        return {}
 
 def write_config(config):
     """Menyimpan kembali file konfigurasi."""

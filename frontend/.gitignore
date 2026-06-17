@@ -23,3 +23,8 @@ dist-ssr
 *.sln
 *.sw?
 api_contract.md
+venv/
+.venv/
+__pycache__/
+*.pyc
+frontend/dist/

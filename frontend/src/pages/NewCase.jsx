@@ -67,7 +67,7 @@ export default function NewCase() {
         {/* Title bar */}
         <div className="bg-[#1e2433] px-5 py-3 flex items-center gap-2">
           <span className="font-mono text-[11px] tracking-[0.15em] text-[#a0aab8] uppercase">
-            Imprint Forensics
+            Engram Forensics
           </span>
           <span className="text-[#3a4458] mx-1">·</span>
           <span className="font-mono text-[11px] tracking-[0.15em] text-[#a0aab8] uppercase">
@@ -272,7 +272,7 @@ export default function NewCase() {
         {/* Bottom bar */}
         <div className="bg-[#f7f8fa] border-t border-[#d0d5dd] px-5 py-2 flex items-center justify-between">
           <span className="font-mono text-[10px] text-[#9ca3af] tracking-widest uppercase">
-            Imprint v1.0 · Bastion Seize · WRECK-IT 7.0
+            Engram v1.0 · Bastion Seize · WRECK-IT 7.0
           </span>
           <span className="font-mono text-[10px] text-[#9ca3af]">
             {form.case_name || '—'}
