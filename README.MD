@@ -22,11 +22,9 @@ Terinspirasi dari alur kerja *Autopsy Forensic Browser*, **Engram** membawa keku
 
 ## 🖥️ Demo
 
-> 📸 *Screenshot dan demo GIF akan ditambahkan di sini.*
+> 📸 
 
-<!-- Tambahkan screenshot dashboard di sini -->
-<!-- ![Engram Dashboard](assets/screenshots/dashboard.png) -->
-<!-- ![Engram Demo](assets/demo.gif) -->
+
 
 ---
 
@@ -200,9 +198,9 @@ Transparansi adalah bagian dari profesionalisme. Berikut batasan yang perlu dike
 
 | Nama | Role |
 |------|------|
-| *(Ivan Aryasatya)* | Backend Engineer |
-| *(Radisty Kirana Dhisa)* | Frontend Engineer |
-| *(Iqbal Ilmi)* | Forensics Analyst |
+| *Ivan Aryasatya* | Backend Engineer |
+| *Radisty Kirana Dhisa* | Frontend Engineer |
+| *Iqbal Ilmi* | Forensics Analyst |
 
 ---
 
