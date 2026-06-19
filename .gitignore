@@ -31,3 +31,4 @@ frontend/dist/
 .env
 backend/.env**/__pycache__/
 **/*.pyc
+prompt.txt
