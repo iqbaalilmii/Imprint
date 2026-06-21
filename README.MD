@@ -1,7 +1,7 @@
-# 🧠 Engram
+# Engram
 
-> **Automated Volatile Memory Forensics Platform**
-> Developed by Team: **"Bastion Seize"**
+**Automated Volatile Memory Forensics Platform**
+Dibuat oleh Team **Bastion Seize**
 
 ![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat-square&logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.111-009688?style=flat-square&logo=fastapi&logoColor=white)
@@ -12,223 +12,164 @@
 
 ---
 
-## 📌 Sekilas Tentang Engram
+Engram adalah platform forensik memori yang membungkus Volatility 3 ke dalam pipeline otomatis dengan dashboard web. Masukin path memory dump, biarin pipeline-nya jalan, dan hasilnya langsung muncul di browser sebagai proses tree, network connections, malfind findings, dan IOC list yang udah di-enrich pakai VirusTotal.
 
-**Engram** adalah platform forensik memori (*volatile memory forensics*) modern yang mendeteksi, menganalisis, dan memvisualisasikan *RAM dump* secara otomatis untuk keperluan investigasi insiden (*Incident Response*).
+Jalan sepenuhnya di localhost. Tidak ada dump file atau hasil analisis yang keluar dari mesin, kecuali request enrichment ke VirusTotal API.
 
-Terinspirasi dari alur kerja *Autopsy Forensic Browser*, **Engram** membawa kekuatan analisis memori tingkat dalam ke dalam antarmuka web yang intuitif. Cukup unggah *memory dump* atau masukkan path direktori dump Anda, dan biarkan pipeline otomatis kami membedah memori di latar belakang — sementara Anda menganalisis hasilnya langsung dari browser di `localhost`.
-
----
-
-## 🖥️ Demo
+## Demo
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/7ed41447-3050-4952-a4ff-d65c3c25d25c" alt="Engram - Cases Dashboard" width="100%" />
-  <br/><em>Cases Dashboard — manajemen sesi investigasi</em>
+  <br/><em>Cases Dashboard</em>
 </p>
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/22eb4bd6-9bd1-4814-a256-8501625c7979" alt="Engram - Analysis Panel" width="100%" />
-  <br/><em>Analysis Panel — korelasi proses, jaringan, dan memori</em>
+  <br/><em>Analysis Panel</em>
 </p>
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/0004bd91-7534-4044-9f9c-4f26d279fd8c" alt="Engram - IOC & Threat Intel" width="100%" />
-  <br/><em>IOC Automated List — ekstraksi indikator kompromi dengan skor VirusTotal</em>
+  <br/><em>IOC List dengan skor VirusTotal</em>
 </p>
 
----
+## Kenapa ini dibuat
 
-## 💥 Latar Belakang & Masalah
+Volatility 3 itu solid, tapi murni CLI. Tiap kali handle case, alurnya selalu sama: jalanin `pslist`, catat hasilnya, jalanin `pstree`, copy-paste ke notes, jalanin `netscan`, cocokin manual sama IP yang dicurigai, lanjut `malfind`, baca hex dump satu-satu. Untuk yang udah biasa, ini makan waktu. Untuk analyst L1 atau yang baru masuk SOC, learning curve-nya curam — belum lagi kalau harus eskalasi ke senior analyst yang juga sibuk.
 
-Serangan siber modern — terutama dalam operasi *Cyber Warfare* tingkat tinggi — semakin bergantung pada teknik **Fileless Malware**. Ini adalah jenis malware yang hanya hidup di dalam RAM dan tidak meninggalkan jejak fisik di *harddisk*.
+Masalahnya makin kerasa kalau lawan yang dihadapi pakai fileless malware. Teknik kayak process injection, process hollowing, reflective DLL injection, sampe living-off-the-land lewat PowerShell — semuanya tidak nyentuh disk, jadi antivirus konvensional yang cuma scan filesystem ya jelas nggak nangkep apa-apa. Satu-satunya jejak yang ketinggalan ada di RAM, dan begitu mesin dimatikan, itu hilang.
 
-> 📊 **Fakta & Angka:**
->
-> **70%** dari seluruh serangan malware serius saat ini menggunakan teknik fileless yang tidak meninggalkan file apapun di disk *(SentinelOne, 2026)*
->
-> Serangan jenis ini meningkat **78%** hanya dalam satu tahun terakhir *(HackingLoops, 2026)*
->
-> **77%** dari ransomware yang berhasil menginfeksi korban melewati antivirus sepenuhnya via teknik fileless *(PurpleSec Cybersecurity Statistics)*
->
-> **19%** kasus serangan berhasil mengeksfiltrasi data dalam waktu kurang dari 1 jam *(Mandiant M-Trends 2025 / Unit42)*
+Angkanya juga nggak enak didengar. SentinelOne nyebut sekitar 70% serangan malware serius sekarang pakai teknik fileless, dan menurut HackingLoops jumlah ini naik 78% dalam setahun terakhir. PurpleSec mencatat 77% ransomware yang berhasil tembus itu lolos lewat teknik fileless. Sementara itu Mandiant M-Trends nyebut ada kasus di mana eksfiltrasi data kelar dalam kurang dari satu jam — dan kalau proses investigasi manual aja udah makan 2 jam per case (data dari SOC Operations Survey di arxiv), ya keduluan terus.
 
-Beberapa teknik manipulasi memori evasif yang sering digunakan meliputi:
+Engram nggak nyoba gantiin Volatility — itu tetap jadi engine-nya. Yang dipangkas adalah waktu antara "dump file siap" sampai "ketemu indikasi serangan". Targetnya dari hitungan jam jadi hitungan menit, dan hasilnya udah dikorelasi otomatis biar nggak perlu loncat-loncat terminal.
 
-| Teknik | Deskripsi |
-|--------|-----------|
-| **Process Injection** | Menyuntikkan kode jahat ke dalam proses Windows yang sah (e.g., `rundll32.exe`) |
-| **Process Hollowing** | Mengosongkan memori proses legitim dan menggantinya dengan payload berbahaya |
-| **Reflective DLL Injection** | Memuat DLL malware langsung ke memori tanpa menyentuh *disk* |
-| **Living-off-the-Land (LotL)** | Menyalahgunakan tools bawaan OS seperti PowerShell untuk mengeksekusi perintah jahat |
-
-**Masalahnya:** Antivirus konvensional tidak mampu mendeteksi aktivitas ini karena hanya memindai *disk*. Alat standar industri seperti **Volatility 3** sangat kuat, tetapi murni berbasis CLI dan membutuhkan keahlian teknis tinggi. Investigasi manual yang dieskalasi ke analis senior membutuhkan **hingga 2 jam per kasus** *(SOC Operations Survey, arxiv.org)* — sementara serangan sudah bisa mengeksfiltrasi data dalam 60 menit pertama.
-
-**Solusi Kami:** **Engram** mengotomatisasi seluruh pipeline forensik ini — memangkas waktu investigasi dari hitungan jam menjadi **menit**, dengan visualisasi korelasi data instan bagi tim analis SOC dan *Incident Responder*.
-
----
-
-## 📋 Prerequisites
-
-Pastikan sistem Anda telah memiliki:
+## Prerequisites
 
 | Kebutuhan | Keterangan |
 |-----------|------------|
-| **Docker & Docker Compose** | Direkomendasikan untuk instalasi paling mudah |
-| **Python 3.11+** | Jika menjalankan tanpa Docker |
-| **Node.js 18+** | Jika menjalankan tanpa Docker |
-| **Memory Dump** | Format `.raw`, `.mem`, `.vmem`, atau `.dmp` |
-| **VirusTotal API Key** | [Daftar gratis di sini](https://www.virustotal.com/gui/join-us) |
-| **RAM Host minimal 8 GB** | Untuk analisis dump berukuran besar |
+| Docker & Docker Compose | cara paling gampang buat jalanin ini |
+| Python 3.11+ | kalau mau jalan tanpa Docker |
+| Node.js 18+ | kalau mau jalan tanpa Docker |
+| Memory dump | format `.raw`, `.mem`, `.vmem`, atau `.dmp` |
+| VirusTotal API key | [daftar gratis di sini](https://www.virustotal.com/gui/join-us) |
+| RAM host minimal 8 GB | buat handle dump yang gede |
 
----
+## Quick Start
 
-## ⚡ Quick Start
-
-### Dengan Docker (Direkomendasikan)
+### Pakai Docker (disaranin)
 
 ```bash
-# 1. Clone repositori
 git clone https://github.com/bastion-seize/engram.git
 cd engram
 
-# 2. Salin file konfigurasi environment
 cp .env.example .env
-# Edit .env dan isi VIRUSTOTAL_API_KEY dengan API key Anda
+# isi VIRUSTOTAL_API_KEY di .env
 
-# 3. Jalankan semua service
 docker-compose up --build
-
-# 4. Buka browser
-# Frontend : http://localhost:3000
-# API Docs : http://localhost:8000/docs
 ```
 
-### Tanpa Docker (Manual)
+Buka `http://localhost:3000` buat frontend, `http://localhost:8000/docs` buat API docs.
+
+### Manual (tanpa Docker)
 
 ```bash
-# Backend
+# backend
 cd backend
 pip install -r requirements.txt
 uvicorn main:app --reload --port 8000
 
-# Frontend (terminal baru)
+# frontend, terminal baru
 cd frontend
 npm install
 npm run dev
 ```
 
----
+## Cara Pakai
 
-## 📖 Cara Penggunaan
+1. Buka `http://localhost:3000`
+2. Upload memory dump atau masukin path ke direktori tempat dump disimpan
+3. Pipeline jalan otomatis di background — Volatility 3 dieksekusi plugin per plugin
+4. Pantau hasilnya lewat 4 panel:
 
-1. **Buka** `http://localhost:3000` di browser
-2. **Unggah** file memory dump **atau** masukkan path direktori tempat dump disimpan
-3. **Analisis berjalan otomatis** — pipeline Volatility 3 akan langsung memproses dump di background
-4. **Pantau** hasil investigasi secara real-time melalui 4 panel dashboard:
+| Panel | Isinya |
+|---|---|
+| Process List Tracker | proses tree + flag anomali |
+| Network Connections Monitor | koneksi aktif, kecocokan sama IOC |
+| Malfind Analyzer | region memori dengan proteksi mencurigakan |
+| IOC Automated List | IP/domain/hash yang diekstrak + skor VirusTotal |
 
-| Panel | Fungsi |
-|-------|--------|
-| **Process List Tracker** | Identifikasi proses mencurigakan dan anomali pohon proses |
-| **Network Connections Monitor** | Lacak koneksi C2 dan aktivitas jaringan berbahaya |
-| **Malfind Analyzer** | Temukan injeksi kode dan region memori mencurigakan |
-| **IOC Automated List** | Review indikator kompromi dengan skor threat intelligence |
-
----
-
-## 🛠️ Arsitektur Teknologi
-
-Engram dibangun dengan arsitektur client-server yang berjalan **sepenuhnya lokal** untuk memastikan keamanan dan privasi data sensitif.
+## Arsitektur
 
 ```
 ┌─────────────────────────────────────────────┐
 │                  Browser                    │
 │           React.js + Tailwind CSS           │
-│         (SOC-style Dashboard UI)            │
 └────────────────────┬────────────────────────┘
                      │ HTTP / REST API
 ┌────────────────────▼────────────────────────┐
 │            Backend (FastAPI)                │
-│   • Upload Handler & Job Queue (Async)      │
-│   • Volatility 3 Plugin Runner              │
-│   • Output Parser (Text → JSON)             │
-│   • VirusTotal OSINT Integration            │
+│   • Upload handler & job queue (async)      │
+│   • Volatility 3 plugin runner              │
+│   • Output parser (text → JSON)             │
+│   • VirusTotal integration                  │
 └──────────┬──────────────────────┬───────────┘
            │                      │
 ┌──────────▼──────────┐  ┌───────▼──────────┐
 │    Volatility 3     │  │   VirusTotal API  │
-│  (Forensics Engine) │  │  (Threat Intel)   │
 └─────────────────────┘  └──────────────────┘
 ```
 
-| Layer | Teknologi | Peran |
-|-------|-----------|-------|
-| **Frontend** | React.js, Tailwind CSS | Dashboard SOC interaktif |
-| **Backend** | Python, FastAPI | Orchestrator pipeline forensik |
-| **Forensics Engine** | Volatility 3 | Ekstraksi & analisis artefak memori |
-| **Threat Intel** | VirusTotal API | Scoring reputasi IP, Domain, Hash |
+| Layer | Tech | Peran |
+|---|---|---|
+| Frontend | React, Tailwind CSS | dashboard |
+| Backend | Python, FastAPI | orchestrate pipeline |
+| Forensics engine | Volatility 3 | ekstraksi artefak memori |
+| Threat intel | VirusTotal API | scoring reputasi IOC |
 
----
+## Fitur Utama
 
-## 🚀 Fitur Utama (Core Panels)
+**Process List Tracker** jalanin `pslist`/`pstree`, cocokin PPID, dan otomatis flag proses yang nggak punya path di disk. Itu indikator kuat ada process injection atau hollowing.
 
-### 1. 🔵 Process List Tracker
-Menganalisis pohon proses (`pslist` / `pstree`), melacak Parent PID (PPID), dan otomatis **menandai merah** proses fileless yang tidak memiliki path file yang jelas di disk — indikator kuat adanya Process Injection atau Hollowing.
+**Network Connections Monitor** baca hasil `netscan`, cocokin PID lokal sama IP/domain asing, kelar deteksi pattern C2 beaconing tanpa harus baca satu-satu manual.
 
-### 2. 🟡 Network Connections Monitor
-Memetakan sisa-sisa struktur data jaringan (`netscan`) untuk mencocokkan PID lokal dengan IP/Domain asing — mendeteksi aktivitas **C2 Beaconing** secara otomatis.
+**Malfind Analyzer** sisir VAD buat nemu region dengan proteksi `PAGE_EXECUTE_READWRITE`. Ini signature umum shellcode injection, tapi catat: plugin ini noisy, false positive itu normal.
 
-### 3. 🔴 Malfind Analyzer
-Menyisir memori VAD (*Virtual Address Descriptor*) untuk memburu proteksi memori mencurigakan seperti `PAGE_EXECUTE_READWRITE` (RWX) — signature klasik dari shellcode injection.
+**IOC Automated List** semua IP, domain, dan hash yang ketemu di seluruh hasil analisis dikumpulin dan langsung di-enrich pakai VirusTotal.
 
-### 4. 🟢 IOC Automated List
-Ekstraksi otomatis Indikator Kompromi (IP, Domain, dan Hash) dari seluruh hasil analisis, dilengkapi **skor reputasi intelijen ancaman** dari VirusTotal.
+## Contoh Output
 
----
-
-## 📊 Sample Output
-
-Diuji menggunakan sample dump publik dari [MemLabs](https://github.com/stuxnet999/MemLabs):
+Dites pakai sample dump publik dari [MemLabs](https://github.com/stuxnet999/MemLabs):
 
 ```
 File     : memdump.raw (4.2 GB)
 OS Target: Windows 10 x64
 
-✅ Analisis selesai dalam: ~4 menit 30 detik
+Analisis selesai dalam ~4 menit 30 detik
 
-📋 Ringkasan:
-  • Proses mencurigakan ditemukan : 3
-  • Koneksi jaringan aktif        : 12 (2 flagged)
-  • Region memori RWX (Malfind)   : 7
-  • IOC diekstrak                 : 5 IP, 2 Domain, 3 Hash
-  • Threat Intel hits (VT)        : 2 IP dengan skor berbahaya (45/72, 38/72)
+Ringkasan:
+  Proses mencurigakan      : 3
+  Koneksi jaringan aktif    : 12 (2 flagged)
+  Region memori RWX         : 7
+  IOC diekstrak             : 5 IP, 2 domain, 3 hash
+  VT hits                   : 2 IP berbahaya (45/72, 38/72)
 ```
 
-> ⚠️ *Hasil aktual bervariasi tergantung kondisi memory dump dan sistem target.*
+Hasil aktual bakal beda-beda tergantung kondisi dump dan target sistemnya.
 
----
+## Limitations
 
-## ⚠️ Limitations
+- Cuma support Windows memory dump untuk sekarang. Linux belum.
+- Malfind itu noisy by design — review manual tetap perlu, jangan langsung percaya semua flag-nya.
+- Dites stabil sampai dump ~8GB. Lebih besar dari itu, butuh resource tambahan dan belum dites secara konsisten.
+- IOC scoring butuh koneksi internet buat hit VirusTotal API.
+- VirusTotal free tier dibatasi 4 request/menit, jadi analisis IOC dalam jumlah besar bakal melambat di bagian ini.
 
-Transparansi adalah bagian dari profesionalisme. Berikut batasan yang perlu diketahui:
+## Lisensi
 
-| Batasan | Keterangan |
-|---------|------------|
-| **Platform** | Saat ini hanya mendukung Windows memory dump. Dukungan Linux menyusul. |
-| **Malfind Noise** | Plugin Malfind secara inheren menghasilkan false positive — review manual oleh analis tetap diperlukan. |
-| **Ukuran File** | Diuji hingga dump berukuran ~8 GB. Dump lebih besar mungkin memerlukan resource tambahan. |
-| **Konektivitas** | Fitur IOC scoring memerlukan koneksi internet untuk mengakses VirusTotal API. |
-| **API Rate Limit** | VirusTotal tier gratis dibatasi 4 request/menit — analisis IOC besar akan berjalan lebih lambat. |
-
-
----
-
-## 📄 Lisensi
-
-Didistribusikan di bawah lisensi **MIT**. Lihat [`LICENSE`](LICENSE) untuk detail.
+MIT. Lihat [`LICENSE`](LICENSE).
 
 ---
 
 <div align="center">
-  <sub>Built with ❤️ by Team Bastion Seize · Hackathon 2025</sub>
+  <sub>Built by Team Bastion Seize · Hackathon 2025</sub>
 </div>
