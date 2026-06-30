@@ -1,49 +1,6 @@
-import { useState } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-
-// ── MOCK DATA ──────────────────────────────────────────────
-const MOCK_SUMMARY = {
-  total_processes: 87,
-  suspicious_processes: 4,
-  critical_alerts: 2,
-  ioc_found: 6,
-}
-
-const MOCK_PROCESSES = [
-  { pid: 4,    ppid: 0,   name: 'System',       path: 'N/A',                                    score: 0,  severity: 'clean' },
-  { pid: 692,  ppid: 4,   name: 'services.exe',  path: 'C:\\Windows\\System32\\services.exe',   score: 5,  severity: 'clean' },
-  { pid: 1024, ppid: 692, name: 'svchost.exe',   path: 'C:\\Windows\\System32\\svchost.exe',    score: 12, severity: 'clean' },
-  { pid: 2048, ppid: 692, name: 'svchost.exe',   path: 'C:\\Windows\\System32\\svchost.exe',    score: 88, severity: 'critical' },
-  { pid: 3120, ppid: 692, name: 'svchost.exe',   path: '',                                       score: 76, severity: 'high' },
-  { pid: 3512, ppid: 1,   name: 'explorer.exe',  path: 'C:\\Windows\\explorer.exe',             score: 8,  severity: 'clean' },
-  { pid: 4096, ppid: 3512,'name': 'notepad.exe', path: 'C:\\Windows\\System32\\notepad.exe',    score: 10, severity: 'clean' },
-  { pid: 5120, ppid: 692, name: 'rundll32.exe',  path: '',                                       score: 91, severity: 'critical' },
-  { pid: 6200, ppid: 3512,name: 'cmd.exe',       path: 'C:\\Windows\\System32\\cmd.exe',        score: 55, severity: 'medium' },
-  { pid: 7300, ppid: 6200,name: 'powershell.exe',path: 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe', score: 63, severity: 'high' },
-]
-
-const MOCK_NETWORK = [
-  { pid: 5120, process: 'rundll32.exe', proto: 'TCPv4', local: '192.168.1.10:49800', foreign: '185.220.101.45:443', state: 'ESTABLISHED', malicious: true,  family: 'CobaltStrike' },
-  { pid: 2048, process: 'svchost.exe',  proto: 'TCPv4', local: '192.168.1.10:49920', foreign: '91.108.4.12:80',    state: 'ESTABLISHED', malicious: true,  family: 'AsyncRAT' },
-  { pid: 1024, process: 'svchost.exe',  proto: 'TCPv4', local: '192.168.1.10:50001', foreign: '8.8.8.8:53',        state: 'ESTABLISHED', malicious: false, family: null },
-  { pid: 3512, process: 'explorer.exe', proto: 'TCPv4', local: '192.168.1.10:50100', foreign: '20.190.151.68:443', state: 'CLOSE_WAIT',  malicious: false, family: null },
-]
-
-const MOCK_MALFIND = [
-  { pid: 5120, process: 'rundll32.exe', address: '0x1f0000', protection: 'PAGE_EXECUTE_READWRITE', has_pe: true,  severity: 'critical' },
-  { pid: 2048, process: 'svchost.exe',  address: '0x2a0000', protection: 'PAGE_EXECUTE_READWRITE', has_pe: true,  severity: 'critical' },
-  { pid: 7300, process: 'powershell.exe',address:'0x3c0000', protection: 'PAGE_EXECUTE_READ',      has_pe: false, severity: 'high' },
-]
-
-const MOCK_IOCS = [
-  { type: 'ip',     value: '185.220.101.45',         family: 'CobaltStrike', vt_score: '42/94', malicious: true },
-  { type: 'ip',     value: '91.108.4.12',             family: 'AsyncRAT',    vt_score: '38/94', malicious: true },
-  { type: 'domain', value: 'update.microsoft-cdn.ru', family: 'CobaltStrike', vt_score: '31/94', malicious: true },
-  { type: 'domain', value: 'cdn-telemetry.io',        family: 'Unknown',      vt_score: '12/94', malicious: true },
-  { type: 'ip',     value: '8.8.8.8',                 family: null,           vt_score: '0/94',  malicious: false },
-  { type: 'ip',     value: '20.190.151.68',           family: null,           vt_score: '0/94',  malicious: false },
-]
-// ── END MOCK DATA ──────────────────────────────────────────
+import apiClient from '../api/client'
 
 const SEVERITY_STYLE = {
   critical: 'bg-red-100 text-red-700 border-red-200',
@@ -54,9 +11,10 @@ const SEVERITY_STYLE = {
 }
 
 function SeverityBadge({ severity }) {
+  const sev = String(severity || 'clean').toLowerCase()
   return (
-    <span className={`inline-flex items-center font-mono text-[10px] px-2 py-0.5 rounded border uppercase tracking-wider ${SEVERITY_STYLE[severity] || SEVERITY_STYLE.clean}`}>
-      {severity}
+    <span className={`inline-flex items-center font-mono text-[10px] px-2 py-0.5 rounded border uppercase tracking-wider ${SEVERITY_STYLE[sev] || SEVERITY_STYLE.clean}`}>
+      {sev}
     </span>
   )
 }
@@ -88,10 +46,78 @@ export default function Dashboard() {
   const { case_id } = useParams()
   const navigate = useNavigate()
   const [activeTab, setActiveTab] = useState('all')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [results, setResults] = useState([])
+  const [summary, setSummary] = useState(null)
+  const [expandedPids, setExpandedPids] = useState(new Set())
+
+  useEffect(() => {
+    if (!case_id) {
+      setError("Invalid Case ID")
+      setLoading(false)
+      return
+    }
+
+    const fetchResults = async () => {
+      try {
+        setLoading(true)
+        setError(null)
+        const res = await apiClient.get(`/cases/${case_id}/results`)
+        setResults(res.data.results || [])
+        setSummary(res.data.summary || null)
+      } catch (err) {
+        console.error("Error fetching results:", err)
+        setError(err.response?.data?.detail || err.response?.data?.error || err.message || 'Failed to fetch results.')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchResults()
+  }, [case_id])
+
+  const toggleExpand = (pid) => {
+    const next = new Set(expandedPids)
+    if (next.has(pid)) {
+      next.delete(pid)
+    } else {
+      next.add(pid)
+    }
+    setExpandedPids(next)
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#f0f2f5] flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center gap-3">
+          <span className="inline-block w-8 h-8 border-4 border-[#1e2433] border-t-transparent rounded-full animate-spin" />
+          <p className="font-mono text-sm text-[#4b5563]">Loading analysis results...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-[#f0f2f5] flex flex-col items-center justify-center p-6">
+        <div className="w-full max-w-md bg-white border border-red-200 rounded p-6 shadow-sm">
+          <p className="font-mono text-xs text-red-600 uppercase tracking-widest mb-1">Error Fetching Results</p>
+          <p className="text-sm text-gray-700 mb-4">{error}</p>
+          <button
+            onClick={() => navigate('/')}
+            className="w-full font-mono text-xs text-white bg-[#1e2433] hover:bg-[#2d3748] py-2 rounded transition-colors"
+          >
+            Back to New Case
+          </button>
+        </div>
+      </div>
+    )
+  }
 
   const filteredProcesses = activeTab === 'all'
-    ? MOCK_PROCESSES
-    : MOCK_PROCESSES.filter(p => p.severity === activeTab)
+    ? results
+    : results.filter(p => String(p.final_severity || '').toLowerCase() === activeTab.toLowerCase())
 
   return (
     <div className="min-h-screen bg-[#f0f2f5]">
@@ -106,9 +132,6 @@ export default function Dashboard() {
           <span className="font-mono text-[11px] text-[#4a5568]">{case_id}</span>
         </div>
         <div className="flex items-center gap-3">
-          <button className="font-mono text-[11px] text-[#a0aab8] hover:text-white border border-[#3a4458] hover:border-[#6b7280] px-3 py-1 rounded transition-colors">
-            Export Report
-          </button>
           <button
             onClick={() => navigate('/')}
             className="font-mono text-[11px] text-[#a0aab8] hover:text-white transition-colors"
@@ -122,193 +145,183 @@ export default function Dashboard() {
 
         {/* ── Panel 1: Summary ── */}
         <div className="grid grid-cols-4 gap-3">
-          {[
-            { label: 'Total Processes',      value: MOCK_SUMMARY.total_processes,      color: 'text-[#111827]',  border: 'border-[#d0d5dd]' },
-            { label: 'Suspicious Processes', value: MOCK_SUMMARY.suspicious_processes, color: 'text-orange-600', border: 'border-orange-200' },
-            { label: 'Critical Alerts',      value: MOCK_SUMMARY.critical_alerts,      color: 'text-red-600',    border: 'border-red-200' },
-            { label: 'IOC Found',            value: MOCK_SUMMARY.ioc_found,            color: 'text-purple-600', border: 'border-purple-200' },
-          ].map((item) => (
-            <div key={item.label} className={`bg-white border ${item.border} rounded p-4`}>
-              <p className="font-mono text-[10px] text-[#9ca3af] uppercase tracking-widest mb-1">{item.label}</p>
-              <p className={`text-3xl font-semibold ${item.color}`}>{item.value}</p>
-            </div>
-          ))}
-        </div>
+          
+          <div className="bg-white border border-[#d0d5dd] rounded p-4">
+            <p className="font-mono text-[10px] text-[#9ca3af] uppercase tracking-widest mb-1">Total Processes</p>
+            <p className="text-3xl font-semibold text-[#111827]">{summary?.total_processes ?? 0}</p>
+          </div>
 
-        {/* ── Panel 2 + 3+4: Process List | Network + Malfind ── */}
-        <div className="grid grid-cols-5 gap-4">
+          <div className="bg-white border border-[#d0d5dd] rounded p-4">
+            <p className="font-mono text-[10px] text-[#9ca3af] uppercase tracking-widest mb-1">Flagged Processes</p>
+            <p className="text-3xl font-semibold text-orange-600">{summary?.flagged_count ?? 0}</p>
+          </div>
 
-          {/* Process List — col span 3 */}
-          <div className="col-span-3 bg-white border border-[#d0d5dd] rounded overflow-hidden">
-            <PanelHeader title="Process List" count={MOCK_PROCESSES.length} />
-
-            {/* Filter tabs */}
-            <div className="flex border-b border-[#e5e7eb] px-4 gap-3">
-              {['all', 'critical', 'high', 'medium', 'clean'].map(tab => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`font-mono text-[11px] uppercase tracking-wider py-2 border-b-2 transition-colors ${
-                    activeTab === tab
-                      ? 'border-[#1e2433] text-[#111827]'
-                      : 'border-transparent text-[#9ca3af] hover:text-[#6b7280]'
-                  }`}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-
-            <div className="overflow-auto max-h-72">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b border-[#e5e7eb]">
-                    {['PID', 'PPID', 'Name', 'Severity', 'Score'].map(h => (
-                      <th key={h} className="text-left font-mono text-[10px] text-[#9ca3af] uppercase tracking-widest px-4 py-2 bg-[#fafafa]">
-                        {h}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-[#f3f4f6]">
-                  {filteredProcesses.map((p) => (
-                    <tr key={p.pid} className="hover:bg-[#fafafa] transition-colors">
-                      <td className="px-4 py-2 font-mono text-xs text-[#6b7280]">{p.pid}</td>
-                      <td className="px-4 py-2 font-mono text-xs text-[#9ca3af]">{p.ppid}</td>
-                      <td className="px-4 py-2">
-                        <div>
-                          <p className="text-xs font-medium text-[#111827]">{p.name}</p>
-                          {p.path && <p className="font-mono text-[10px] text-[#9ca3af] truncate max-w-[180px]">{p.path}</p>}
-                          {!p.path && <p className="font-mono text-[10px] text-red-400">No path (fileless indicator)</p>}
-                        </div>
-                      </td>
-                      <td className="px-4 py-2"><SeverityBadge severity={p.severity} /></td>
-                      <td className="px-4 py-2"><ScoreBar score={p.score} /></td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+          <div className="bg-white border border-[#d0d5dd] rounded p-4">
+            <p className="font-mono text-[10px] text-[#9ca3af] uppercase tracking-widest mb-1">Highest Severity</p>
+            <div className="mt-2">
+              <SeverityBadge severity={summary?.highest_severity} />
             </div>
           </div>
 
-          {/* Right column — Network + Malfind */}
-          <div className="col-span-2 flex flex-col gap-4">
-
-            {/* Network Connections */}
-            <div className="bg-white border border-[#d0d5dd] rounded overflow-hidden flex-1">
-              <PanelHeader title="Network Connections" count={MOCK_NETWORK.length} />
-              <div className="overflow-auto max-h-36">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-[#e5e7eb]">
-                      {['Process', 'Foreign Address', 'State', 'VT Status'].map(h => (
-                        <th key={h} className="text-left font-mono text-[10px] text-[#9ca3af] uppercase tracking-widest px-3 py-2 bg-[#fafafa]">
-                          {h}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-[#f3f4f6]">
-                    {MOCK_NETWORK.map((n, i) => (
-                      <tr key={i} className="hover:bg-[#fafafa] transition-colors">
-                        <td className="px-3 py-2 font-mono text-xs text-[#111827]">{n.process}</td>
-                        <td className="px-3 py-2 font-mono text-xs text-[#6b7280]">{n.foreign}</td>
-                        <td className="px-3 py-2 font-mono text-[10px] text-[#9ca3af]">{n.state}</td>
-                        <td className="px-3 py-2">
-                          {n.vt_status && n.vt_status.malicious > 0 ? (
-                            <span className="font-mono text-[10px] bg-red-100 text-red-600 border border-red-200 px-1.5 py-0.5 rounded">
-                              🚨 {n.vt_status.malicious} Antivirus
-                            </span>
-                          ) : n.vt_status && n.vt_status.status === "checked" ? (
-                            <span className="font-mono text-[10px] bg-green-100 text-green-600 border border-green-200 px-1.5 py-0.5 rounded">
-                              ✅ Clean
-                            </span>
-                          ) : (
-                            <span className="font-mono text-[10px] bg-gray-100 text-gray-600 border border-gray-200 px-1.5 py-0.5 rounded">
-                              Unchecked
-                            </span>
-                          )}
-                        </td>
-                        <td className="px-3 py-2">
-                          {n.malicious
-                            ? <span className="font-mono text-[10px] bg-red-100 text-red-600 border border-red-200 px-1.5 py-0.5 rounded">malicious</span>
-                            : <span className="font-mono text-[10px] bg-green-100 text-green-600 border border-green-200 px-1.5 py-0.5 rounded">clean</span>
-                          }
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+          <div className="bg-white border border-[#d0d5dd] rounded p-4">
+            <p className="font-mono text-[10px] text-[#9ca3af] uppercase tracking-widest mb-1">Severity Breakdown</p>
+            <div className="flex flex-wrap gap-1.5 mt-2">
+              <span className="px-1.5 py-0.5 text-[9px] font-mono border rounded bg-blue-50 text-blue-700 border-blue-100">
+                LOW: {summary?.low_count ?? 0}
+              </span>
+              <span className="px-1.5 py-0.5 text-[9px] font-mono border rounded bg-yellow-50 text-yellow-700 border-yellow-100">
+                MED: {summary?.medium_count ?? 0}
+              </span>
+              <span className="px-1.5 py-0.5 text-[9px] font-mono border rounded bg-orange-50 text-orange-700 border-orange-100">
+                HIGH: {summary?.high_count ?? 0}
+              </span>
+              <span className="px-1.5 py-0.5 text-[9px] font-mono border rounded bg-red-50 text-red-700 border-red-100">
+                CRIT: {summary?.critical_count ?? 0}
+              </span>
             </div>
-
-            {/* Malfind Results */}
-            <div className="bg-white border border-[#d0d5dd] rounded overflow-hidden flex-1">
-              <PanelHeader title="Malfind Results" count={MOCK_MALFIND.length} />
-              <div className="overflow-auto max-h-36">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b border-[#e5e7eb]">
-                      {['Process', 'Address', 'Protection', 'Sev'].map(h => (
-                        <th key={h} className="text-left font-mono text-[10px] text-[#9ca3af] uppercase tracking-widest px-3 py-2 bg-[#fafafa]">
-                          {h}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-[#f3f4f6]">
-                    {MOCK_MALFIND.map((m, i) => (
-                      <tr key={i} className="hover:bg-[#fafafa] transition-colors">
-                        <td className="px-3 py-2">
-                          <p className="font-mono text-xs text-[#111827]">{m.process}</p>
-                          <p className="font-mono text-[10px] text-[#9ca3af]">PID {m.pid}</p>
-                        </td>
-                        <td className="px-3 py-2 font-mono text-xs text-[#6b7280]">{m.address}</td>
-                        <td className="px-3 py-2 font-mono text-[10px] text-[#9ca3af] max-w-[100px] truncate">{m.protection}</td>
-                        <td className="px-3 py-2"><SeverityBadge severity={m.severity} /></td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
           </div>
+
         </div>
 
-        {/* ── Panel 5: IOC List ── */}
+        {/* ── Panel 2: Process List ── */}
         <div className="bg-white border border-[#d0d5dd] rounded overflow-hidden">
-          <PanelHeader title="IOC List — Indicators of Compromise" count={MOCK_IOCS.length} />
-          <div className="overflow-auto">
-            <table className="w-full text-sm">
+          <PanelHeader title="Process List" count={results.length} />
+
+          {/* Filter tabs */}
+          <div className="flex border-b border-[#e5e7eb] px-4 gap-3">
+            {['all', 'critical', 'high', 'medium', 'low', 'clean'].map(tab => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`font-mono text-[11px] uppercase tracking-wider py-2 border-b-2 transition-colors ${
+                  activeTab === tab
+                    ? 'border-[#1e2433] text-[#111827]'
+                    : 'border-transparent text-[#9ca3af] hover:text-[#6b7280]'
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
+
+          <div className="overflow-auto max-h-[500px]">
+            <table className="w-full text-sm text-left">
               <thead>
                 <tr className="border-b border-[#e5e7eb]">
-                  {['Type', 'Value', 'Malware Family', 'VT Score', 'Status'].map(h => (
-                    <th key={h} className="text-left font-mono text-[10px] text-[#9ca3af] uppercase tracking-widest px-4 py-2 bg-[#fafafa]">
+                  {['PID', 'Name', 'Severity', 'Score', ''].map((h, i) => (
+                    <th 
+                      key={i} 
+                      className={`font-mono text-[10px] text-[#9ca3af] uppercase tracking-widest px-4 py-3.5 bg-[#fafafa] ${
+                        h === '' ? 'text-right' : 'text-left'
+                      }`}
+                    >
                       {h}
                     </th>
                   ))}
                 </tr>
               </thead>
               <tbody className="divide-y divide-[#f3f4f6]">
-                {MOCK_IOCS.map((ioc, i) => (
-                  <tr key={i} className="hover:bg-[#fafafa] transition-colors">
-                    <td className="px-4 py-2">
-                      <span className="font-mono text-[10px] bg-[#f3f4f6] text-[#6b7280] border border-[#e5e7eb] px-2 py-0.5 rounded uppercase">
-                        {ioc.type}
-                      </span>
-                    </td>
-                    <td className="px-4 py-2 font-mono text-xs text-[#111827]">{ioc.value}</td>
-                    <td className="px-4 py-2 font-mono text-xs text-[#6b7280]">{ioc.family ?? '—'}</td>
-                    <td className="px-4 py-2 font-mono text-xs text-[#6b7280]">{ioc.vt_score}</td>
-                    <td className="px-4 py-2">
-                      {ioc.malicious
-                        ? <span className="font-mono text-[10px] bg-red-100 text-red-600 border border-red-200 px-2 py-0.5 rounded">malicious</span>
-                        : <span className="font-mono text-[10px] bg-green-100 text-green-600 border border-green-200 px-2 py-0.5 rounded">clean</span>
-                      }
+                {filteredProcesses.length === 0 ? (
+                  <tr>
+                    <td colSpan={5} className="px-4 py-8 text-center font-mono text-xs text-gray-400 italic">
+                      No processes match the selected filter.
                     </td>
                   </tr>
-                ))}
+                ) : (
+                  filteredProcesses.map((p) => {
+                    const isExpanded = expandedPids.has(p.pid)
+                    const showML = p.secondary_ml_note?.shown === true
+                    
+                    return (
+                      <Fragment key={p.pid}>
+                        <tr className="hover:bg-[#fafafa] transition-colors">
+                          <td className="px-4 py-3 font-mono text-xs text-[#6b7280]">
+                            {p.pid}
+                          </td>
+                          <td className="px-4 py-3">
+                            <div className="flex items-center">
+                              <span className="text-xs font-medium text-[#111827]">{p.name}</span>
+                              {showML && (
+                                <span 
+                                  className="inline-flex items-center gap-1 font-mono text-[9px] px-1.5 py-0.5 border rounded uppercase text-[#4b5563] bg-[#f3f4f6] border-[#e5e7eb] cursor-help relative group ml-2"
+                                  title={p.secondary_ml_note.disclaimer}
+                                >
+                                  ML: {p.secondary_ml_note.ml_flagged_as} ({Math.round(p.secondary_ml_note.confidence * 100)}%)
+                                  <span className="invisible group-hover:visible absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 p-2.5 bg-[#1e2433] text-white text-[10px] rounded shadow-lg z-20 normal-case leading-relaxed font-sans text-center">
+                                    {p.secondary_ml_note.disclaimer}
+                                    <span className="absolute top-full left-1/2 transform -translate-x-1/2 border-4 border-transparent border-t-[#1e2433]"></span>
+                                  </span>
+                                </span>
+                              )}
+                            </div>
+                          </td>
+                          <td className="px-4 py-3">
+                            <SeverityBadge severity={p.final_severity} />
+                          </td>
+                          <td className="px-4 py-3">
+                            <ScoreBar score={p.final_score} />
+                          </td>
+                          <td className="px-4 py-3 text-right">
+                            <button
+                              onClick={() => toggleExpand(p.pid)}
+                              className="font-mono text-[10px] text-[#1e2433] hover:text-white border border-[#d0d5dd] px-3 py-1 rounded bg-white hover:bg-[#1e2433] transition-colors"
+                            >
+                              {isExpanded ? 'Hide' : 'Detail'}
+                            </button>
+                          </td>
+                        </tr>
+                        {isExpanded && (
+                          <tr className="bg-[#f9fafb]">
+                            <td colSpan={5} className="px-6 py-4 border-b border-[#e5e7eb]">
+                              <div className="space-y-4">
+                                
+                                <div className="text-xs text-gray-700 bg-white p-3.5 border border-gray-200 rounded shadow-sm">
+                                  <p className="font-semibold text-gray-800 mb-1">Analyst Summary:</p>
+                                  <p className="leading-relaxed">{p.summary_text}</p>
+                                </div>
+
+                                <div>
+                                  <p className="text-[10px] font-mono font-bold text-gray-500 uppercase tracking-wider mb-2">
+                                    Primary Severity Factors ({p.primary_reasons?.length ?? 0})
+                                  </p>
+                                  {p.primary_reasons && p.primary_reasons.length > 0 ? (
+                                    <ul className="space-y-1.5">
+                                      {p.primary_reasons.map((reason, idx) => (
+                                        <li key={idx} className="flex justify-between items-center text-xs text-gray-700 bg-white px-3.5 py-2 border border-gray-200 rounded shadow-sm">
+                                          <span className="font-medium">{reason.reason}</span>
+                                          <span className="font-mono text-red-600 font-bold bg-red-50 border border-red-100 px-1.5 py-0.5 rounded text-[10px]">
+                                            +{reason.points} pts
+                                          </span>
+                                        </li>
+                                      ))}
+                                    </ul>
+                                  ) : (
+                                    <p className="text-xs text-gray-400 italic bg-white p-3 border border-gray-100 rounded">
+                                      No suspicious forensic signatures detected.
+                                    </p>
+                                  )}
+                                </div>
+
+                                {showML && (
+                                  <div className="p-3.5 bg-gray-50 border border-gray-200 rounded text-xs text-[#4b5563] space-y-1">
+                                    <p className="font-semibold text-gray-700">Machine Learning Observation (Secondary):</p>
+                                    <p className="font-mono text-[10px]">
+                                      Prediction: {p.secondary_ml_note.ml_flagged_as} | Confidence Score: {Math.round(p.secondary_ml_note.confidence * 100)}%
+                                    </p>
+                                    <p className="text-[11px] text-gray-500 leading-relaxed italic mt-1.5">
+                                      {p.secondary_ml_note.disclaimer}
+                                    </p>
+                                  </div>
+                                )}
+
+                              </div>
+                            </td>
+                          </tr>
+                        )}
+                      </Fragment>
+                    )
+                  })
+                )}
               </tbody>
             </table>
           </div>
@@ -322,7 +335,7 @@ export default function Dashboard() {
           Engram v1.0 · Bastion Seize · WRECK-IT 7.0
         </span>
         <span className="font-mono text-[10px] text-[#9ca3af]">
-          {MOCK_SUMMARY.critical_alerts} critical · {MOCK_SUMMARY.suspicious_processes} suspicious
+          {summary ? `${summary.critical_count} critical · ${summary.high_count} high · ${summary.medium_count} medium · ${summary.low_count} low` : '—'}
         </span>
       </div>
 

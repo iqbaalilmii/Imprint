@@ -15,6 +15,11 @@ from typing import List, Optional
 import requests
 from dotenv import load_dotenv
 
+# Ensure backend directory is in sys.path so relative imports work correctly
+backend_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if backend_dir not in sys.path:
+    sys.path.insert(0, backend_dir)
+
 load_dotenv()
 VT_API_KEY = os.getenv("VIRUSTOTAL_API_KEY")
 if not VT_API_KEY:
@@ -23,6 +28,7 @@ if not VT_API_KEY:
 # In-memory storage - Global
 cases = {}
 jobs = {}
+case_status_store = {}
 
 # Membuat instance FastAPI
 app = FastAPI(title="Engram Forensics API - Volatility 3 Integrated")
@@ -299,6 +305,195 @@ def background_analysis(case_id: str):
     }
     print(f"[***] Analisis Case {case_id} SELESAI.")
 
+def run_volatility_pipeline(case_id: str, dump_path: str):
+    from pipeline import run_full_analysis, get_case_summary
+    from virustotal_checker import check_ips_with_virustotal, build_virustotal_lookup
+    
+    PLUGINS = [
+        'windows.pslist',
+        'windows.dlllist', 
+        'windows.handles',
+        'windows.ldrmodules',
+        'windows.malfind',
+        'windows.modules',
+        'windows.svcscan',
+        'windows.callbacks',
+        'windows.psscan',
+        'windows.netscan',
+    ]
+    
+    try:
+        volatility_results = {}
+        for idx, plugin_name in enumerate(PLUGINS):
+            if case_id not in case_status_store:
+                return
+            case_status_store[case_id]['current_plugin'] = plugin_name
+            # Plugins cover 0% to 85% of progress
+            percent = int((idx / len(PLUGINS)) * 85)
+            case_status_store[case_id]['percent'] = percent
+            
+            try:
+                res = run_volatility(dump_path, plugin_name)
+                if res is None:
+                    res = []
+            except Exception as e:
+                print(f"[WARNING] Plugin {plugin_name} failed: {e}", file=sys.stderr)
+                res = []
+                
+            key = plugin_name.replace('windows.', '')
+            volatility_results[key] = res
+            
+        # VirusTotal Reputation Scan Phase (90% progress)
+        if case_id not in case_status_store:
+            return
+        case_status_store[case_id]['current_plugin'] = 'Checking VirusTotal IOC reputation...'
+        case_status_store[case_id]['percent'] = 90
+        
+        virustotal_api_key = os.environ.get('VIRUSTOTAL_API_KEY')
+        netscan_results = volatility_results.get('netscan', [])
+        
+        virustotal_lookup = None
+        if virustotal_api_key:
+            try:
+                from virustotal_checker import is_valid_public_ip
+                ip_counts = {}
+                for conn in (netscan_results or []):
+                    foreign_addr = conn.get("ForeignAddr") or conn.get("foreign_addr") or conn.get("foreign") or conn.get("ForeignAddress")
+                    if not foreign_addr:
+                        continue
+                    ip_candidate = str(foreign_addr).strip()
+                    if ':' in ip_candidate:
+                        if ip_candidate.startswith('[') and ']' in ip_candidate:
+                            ip_candidate = ip_candidate.split(']')[0].replace('[', '')
+                        elif ip_candidate.count(':') == 1:
+                            ip_candidate = ip_candidate.split(':')[0]
+                    ip_candidate = ip_candidate.strip()
+                    if ip_candidate and is_valid_public_ip(ip_candidate):
+                        ip_counts[ip_candidate] = ip_counts.get(ip_candidate, 0) + 1
+                
+                # Sort unique IPs by frequency descending
+                unique_ips = sorted(ip_counts.keys(), key=lambda ip: ip_counts[ip], reverse=True)
+                
+                # Query VirusTotal API (asynchronously since check_ips_with_virustotal is async)
+                import asyncio
+                try:
+                    vt_results = asyncio.run(check_ips_with_virustotal(unique_ips, virustotal_api_key))
+                except RuntimeError:
+                    # In case loop is already running in current thread
+                    new_loop = asyncio.new_event_loop()
+                    try:
+                        vt_results = new_loop.run_until_complete(check_ips_with_virustotal(unique_ips, virustotal_api_key))
+                    finally:
+                        new_loop.close()
+                
+                virustotal_lookup = build_virustotal_lookup(netscan_results, vt_results)
+            except Exception as vt_error:
+                print(f"[WARNING] VirusTotal check failed: {vt_error}", file=sys.stderr)
+                virustotal_lookup = None
+        else:
+            print("[INFO] VirusTotal API key is not configured. Skipping reputation check.", file=sys.stderr)
+            virustotal_lookup = None
+
+        # ML Case-level Scoring Phase
+        ml_case_level_result = None
+        try:
+            import joblib
+            import pandas as pd
+            import numpy as np
+            
+            # Paths to ML files
+            model_path = os.path.join(backend_dir, 'engram_isolation_forest.pkl')
+            scaler_path = os.path.join(backend_dir, 'engram_scaler.pkl')
+            metadata_path = os.path.join(backend_dir, 'engram_model_metadata.pkl')
+            
+            # Check if files exist
+            if os.path.exists(model_path) and os.path.exists(scaler_path) and os.path.exists(metadata_path):
+                model = joblib.load(model_path)
+                scaler = joblib.load(scaler_path)
+                metadata = joblib.load(metadata_path)
+                
+                feature_names = metadata['feature_names']
+                score_min = metadata['score_min']
+                score_max = metadata['score_max']
+                
+                # Extract 55 features at case level
+                from feature_extractor import extract_all_features
+                extracted_features = extract_all_features(volatility_results)
+                
+                # DataFrame with correct columns
+                X = pd.DataFrame([extracted_features])[feature_names]
+                
+                # Transform and predict
+                X_scaled = scaler.transform(X)
+                prediction_val = model.predict(X_scaled)[0] # -1 = anomali, 1 = normal
+                raw_score = model.decision_function(X_scaled)[0]
+                
+                # Convert raw score to 0-100 percentage
+                percentage = (1 - (raw_score - score_min) / (score_max - score_min)) * 100
+                percentage = float(np.clip(percentage, 0, 100))
+                
+                ml_case_level_result = {
+                    'prediction': 'MALWARE' if prediction_val == -1 else 'BENIGN',
+                    'malware_probability': percentage
+                }
+                print(f"[***] ML Prediction: {ml_case_level_result['prediction']} ({ml_case_level_result['malware_probability']:.2f}%)")
+            else:
+                print("[WARNING] One or more ML model files (.pkl) are missing. Skipping ML scoring.", file=sys.stderr)
+        except Exception as ml_err:
+            print(f"[WARNING] ML scoring failed: {ml_err}", file=sys.stderr)
+            ml_case_level_result = None
+
+        # Analysis phase (95% progress)
+        if case_id not in case_status_store:
+            return
+        case_status_store[case_id]['current_plugin'] = 'Analyzing results...'
+        case_status_store[case_id]['percent'] = 95
+        
+        try:
+            results = run_full_analysis(volatility_results, virustotal_lookup=virustotal_lookup, ml_case_level_result=ml_case_level_result)
+            summary = get_case_summary(results)
+            
+            case_status_store[case_id].update({
+                'status': 'completed',
+                'percent': 100,
+                'current_plugin': None,
+                'results': results,
+                'case_summary': summary,
+                'completed_at': datetime.now().isoformat() + "Z"
+            })
+            
+            # Update the existing cases entry for backward compatibility
+            if case_id in cases:
+                cases[case_id]["status"] = "completed"
+                cases[case_id]["summary"] = {
+                    "total_processes": summary["total_processes"],
+                    "suspicious_processes": summary["flagged_count"],
+                    "critical_alerts": summary["critical_count"] + summary["high_count"],
+                    "ioc_found": len(netscan_results),
+                    "yara_hits": 0
+                }
+        except Exception as pipeline_error:
+            print(f"[ERROR] Pipeline calculation failed: {pipeline_error}", file=sys.stderr)
+            case_status_store[case_id].update({
+                'status': 'failed',
+                'percent': 100,
+                'current_plugin': None,
+                'error_message': f"Pipeline calculation failed: {pipeline_error}"
+            })
+            if case_id in cases:
+                cases[case_id]["status"] = "failed"
+    except Exception as e:
+        print(f"[ERROR] Global pipeline error: {e}", file=sys.stderr)
+        if case_id in case_status_store:
+            case_status_store[case_id].update({
+                'status': 'failed',
+                'percent': 100,
+                'current_plugin': None,
+                'error_message': f"Global pipeline error: {e}"
+            })
+        if case_id in cases:
+            cases[case_id]["status"] = "failed"
+
 # --- API Endpoints ---
 
 @app.post("/api/cases")
@@ -321,7 +516,7 @@ async def create_case(case_data: CaseCreate):
         }
     }
     cases[case_id] = new_case
-    return {"success": True, "data": new_case, "error": None}
+    return {"case_id": case_id, "case_name": case_data.case_name, "status": "created"}
 
 @app.get("/api/cases")
 async def list_cases():
@@ -338,32 +533,56 @@ async def analyze_case(case_id: str, background_tasks: BackgroundTasks):
     if case_id not in cases:
         raise HTTPException(status_code=404, detail="Case not found")
     
-    jobs[case_id] = {
-        "status": "queued",
-        "progress": {"percent": 0, "current_plugin": "init"}
+    # Validation of dump_path existence
+    dump_path = cases[case_id]["dump_path"]
+    if not os.path.exists(dump_path):
+        raise HTTPException(status_code=400, detail=f"Dump path does not exist: {dump_path}")
+        
+    case_status_store[case_id] = {
+        'status': 'running',
+        'percent': 0,
+        'current_plugin': None,
+        'started_at': datetime.now().isoformat() + "Z",
+        'completed_at': None,
+        'error_message': None,
+        'results': None,
+        'case_summary': None
     }
     
     cases[case_id]["status"] = "running"
-    background_tasks.add_task(background_analysis, case_id)
-    return {"success": True, "data": {"case_id": case_id, "status": "queued"}}
+    background_tasks.add_task(run_volatility_pipeline, case_id, dump_path)
+    return {'status': 'running', 'case_id': case_id}
 
-@app.get("/api/cases/{case_id}/status")
+class CaseStatusResponse(BaseModel):
+    status: str
+    current_plugin: Optional[str] = None
+    percent: int
+    error_message: Optional[str] = None
+
+@app.get("/api/cases/{case_id}/status", response_model=CaseStatusResponse)
 async def get_case_status(case_id: str):
-    if case_id not in cases:
-        raise HTTPException(status_code=404, detail="Case not found")
-    
-    job = jobs.get(case_id)
-    if not job:
-        # Fallback if job not started yet but case exists
-        return {
-            "success": True, 
-            "data": {
-                "status": cases[case_id]["status"], 
-                "progress": {"percent": 0, "current_plugin": "init"}
-            }
-        }
-    
-    return {"success": True, "data": job}
+    if case_id not in case_status_store:
+        raise HTTPException(status_code=404, detail="Case status not found")
+    status_info = case_status_store[case_id]
+    return CaseStatusResponse(
+        status=status_info.get('status', 'pending'),
+        current_plugin=status_info.get('current_plugin'),
+        percent=status_info.get('percent', 0),
+        error_message=status_info.get('error_message')
+    )
+
+@app.get("/api/cases/{case_id}/results")
+async def get_case_results(case_id: str):
+    if case_id not in case_status_store:
+        raise HTTPException(status_code=404, detail="Case status not found")
+    status_info = case_status_store[case_id]
+    if status_info.get('status') != 'completed':
+        raise HTTPException(status_code=400, detail="Analysis not completed yet")
+    return {
+        'case_id': case_id,
+        'results': status_info.get('results'),
+        'summary': status_info.get('case_summary')
+    }
 
 @app.get("/api/cases/{case_id}/processes")
 async def get_processes(case_id: str):

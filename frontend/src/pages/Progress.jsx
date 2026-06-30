@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import axios from 'axios'
-
-const API_BASE = 'http://localhost:8000'
+import apiClient from '../api/client'
 
 const PIPELINE_CONFIG = [
-  { id: 'windows.info',                 label: 'windows.info',                 desc: 'Show OS & kernel details' },
-  { id: 'windows.pslist',               label: 'windows.pslist',               desc: 'Enumerate running processes' },
-  { id: 'windows.cmdline',              label: 'windows.cmdline',              desc: 'Extract process command line arguments' },
-  { id: 'windows.netscan',              label: 'windows.netscan',              desc: 'Scan network connections' },
-  { id: 'windows.malware.malfind',      label: 'windows.malware.malfind',      desc: 'Detect memory injections & code implants' },
-  { id: 'windows.malware.pebmasquerade', label: 'windows.malware.pebmasquerade', desc: 'Detect process name spoofing' },
-  { id: 'windows.registry.userassist',  label: 'windows.registry.userassist',  desc: 'Gather user application execution history' },
+  { id: 'windows.pslist',      label: 'windows.pslist',      desc: 'Enumerate running processes' },
+  { id: 'windows.dlllist',     label: 'windows.dlllist',     desc: 'List loaded DLLs for each process' },
+  { id: 'windows.handles',     label: 'windows.handles',     desc: 'Enumerate open process handles' },
+  { id: 'windows.ldrmodules',  label: 'windows.ldrmodules',  desc: 'Detect unlinked/hidden DLLs' },
+  { id: 'windows.malfind',     label: 'windows.malfind',     desc: 'Scan for memory injection signatures' },
+  { id: 'windows.modules',     label: 'windows.modules',     desc: 'List loaded kernel modules' },
+  { id: 'windows.svcscan',     label: 'windows.svcscan',     desc: 'Scan for registered Windows services' },
+  { id: 'windows.callbacks',   label: 'windows.callbacks',   desc: 'Detect kernel callback functions' },
+  { id: 'windows.psscan',      label: 'windows.psscan',      desc: 'Scan for terminated or hidden processes' },
+  { id: 'windows.netscan',     label: 'windows.netscan',     desc: 'Scan active network connections' },
 ]
 
 export default function Progress() {
@@ -29,7 +30,7 @@ export default function Progress() {
   useEffect(() => {
     if (!case_id) return
     
-    axios.get(`${API_BASE}/api/cases/${case_id}`)
+    apiClient.get(`/cases/${case_id}`)
       .then(res => {
         if (res.data.success) setCaseInfo(res.data.data)
       })
@@ -45,54 +46,59 @@ export default function Progress() {
       return
     }
 
+    let intervalId = null
+
     const fetchStatus = async () => {
       try {
-        const res = await axios.get(`${API_BASE}/api/cases/${case_id}/status`)
-        if (!res.data.success) throw new Error(res.data.error || 'Failed to fetch status')
-
-        const { status: backendStatus, progress } = res.data.data
+        const res = await apiClient.get(`/cases/${case_id}/status`)
+        const { status: backendStatus, current_plugin, percent: backendPercent, error_message } = res.data
         
         setStatus(backendStatus)
-        setPercent(progress?.percent ?? 0)
-        setCurrentPlugin(progress?.current_plugin ?? '')
+        setPercent(backendPercent ?? 0)
+        setCurrentPlugin(current_plugin ?? '')
 
         if (backendStatus === 'completed') {
+          if (intervalId) clearInterval(intervalId)
           setRedirecting(true)
-          // Graceful redirect to dashboard
-          setTimeout(() => navigate(`/dashboard/${case_id}`), 2500)
-          return true // signal to clear interval
-        }
-
-        if (backendStatus === 'failed') {
-          setError('Analisis Volatility 3 gagal. Pastikan file dump valid dan backend aktif.')
-          return true // signal to clear interval
+          navigate(`/dashboard/${case_id}`)
+        } else if (backendStatus === 'failed') {
+          if (intervalId) clearInterval(intervalId)
+          setError(error_message || 'Analisis Volatility 3 gagal. Pastikan file dump valid dan backend aktif.')
         }
       } catch (err) {
         console.error("Polling error:", err)
       }
-      return false
     }
 
     // Initial fetch
     fetchStatus()
 
-    const interval = setInterval(async () => {
-      const shouldStop = await fetchStatus()
-      if (shouldStop) clearInterval(interval)
-    }, 2000)
+    intervalId = setInterval(fetchStatus, 3000)
 
-    return () => clearInterval(interval)
+    return () => {
+      if (intervalId) clearInterval(intervalId)
+    }
   }, [case_id, navigate])
 
   const getPluginState = (pluginId, index) => {
     if (status === 'completed') return 'success'
-    if (status === 'failed' && currentPlugin === pluginId) return 'failed'
     
-    // Find the index of the currently executing plugin in our config
     const currentIndex = PIPELINE_CONFIG.findIndex(p => p.id === currentPlugin)
     
-    if (currentPlugin === pluginId) return 'executing'
-    if (currentIndex !== -1 && index < currentIndex) return 'success'
+    if (currentPlugin === pluginId) {
+      return status === 'failed' ? 'failed' : 'executing'
+    }
+    
+    if (currentIndex !== -1) {
+      if (index < currentIndex) return 'success'
+      return 'pending'
+    }
+    
+    // If currentPlugin is not found in CONFIG (e.g. "Analyzing results...")
+    if (percent >= 95) {
+      return 'success'
+    }
+    
     return 'pending'
   }
 
@@ -230,7 +236,7 @@ export default function Progress() {
                   onClick={() => navigate('/')}
                   className="mt-2 text-[10px] text-[#ff4d4d] underline hover:no-underline underline-offset-4"
                 >
-                  RETURN_TO_INITIAL_INPUT
+                  Back to New Case
                 </button>
               </div>
             </div>

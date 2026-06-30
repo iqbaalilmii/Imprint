@@ -1,8 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
-
-const API_BASE = 'http://localhost:8000'
+import apiClient from '../api/client'
 
 const STEPS = [
   { num: 1, label: 'Case Information' },
@@ -46,22 +44,23 @@ export default function NewCase() {
 
     try {
       console.log("Creating case...")
-      const caseRes = await axios.post(`${API_BASE}/api/cases`, form)
-      if (!caseRes.data.success) throw new Error(caseRes.data.error)
-      const case_id = caseRes.data.data.case_id
+      const caseRes = await apiClient.post('/cases', form)
+      const case_id = caseRes.data.case_id
+      if (!case_id) {
+        throw new Error('Case ID was not returned by the server.')
+      }
       console.log("Case created:", case_id)
 
       console.log("Triggering analysis...")
-      const analyzeRes = await axios.post(`${API_BASE}/api/cases/${case_id}/analyze`)
-      if (!analyzeRes.data.success) throw new Error(analyzeRes.data.error)
+      const analyzeRes = await apiClient.post(`/cases/${case_id}/analyze`)
+      if (analyzeRes.data.status !== 'running') {
+        throw new Error('Failed to start analysis pipeline.')
+      }
       console.log("Analysis triggered successfully.")
 
-      // Small delay to ensure DB/Memory is updated
-      setTimeout(() => {
-        navigate(`/progress/${case_id}`)
-      }, 300)
+      navigate(`/progress/${case_id}`)
     } catch (err) {
-      setError(err.response?.data?.error || err.message || 'An error occurred.')
+      setError(err.response?.data?.detail || err.response?.data?.error || err.message || 'An error occurred.')
     } finally {
       setLoading(false)
     }
@@ -93,22 +92,20 @@ export default function NewCase() {
               {STEPS.map((s) => (
                 <div
                   key={s.num}
-                  className={`flex items-center gap-2.5 px-3 py-2 rounded text-sm transition-colors ${
-                    step === s.num
+                  className={`flex items-center gap-2.5 px-3 py-2 rounded text-sm transition-colors ${step === s.num
                       ? 'bg-white border border-[#d0d5dd] text-[#111827] font-semibold shadow-sm'
                       : step > s.num
-                      ? 'text-[#6b7280]'
-                      : 'text-[#9ca3af]'
-                  }`}
+                        ? 'text-[#6b7280]'
+                        : 'text-[#9ca3af]'
+                    }`}
                 >
                   <span
-                    className={`w-5 h-5 rounded-full text-[10px] flex items-center justify-center font-mono font-bold flex-shrink-0 ${
-                      step > s.num
+                    className={`w-5 h-5 rounded-full text-[10px] flex items-center justify-center font-mono font-bold flex-shrink-0 ${step > s.num
                         ? 'bg-[#16a34a] text-white'
                         : step === s.num
-                        ? 'bg-[#1e2433] text-white'
-                        : 'bg-[#e5e7eb] text-[#9ca3af]'
-                    }`}
+                          ? 'bg-[#1e2433] text-white'
+                          : 'bg-[#e5e7eb] text-[#9ca3af]'
+                      }`}
                   >
                     {step > s.num ? '✓' : s.num}
                   </span>
@@ -263,7 +260,7 @@ export default function NewCase() {
                     {loading ? (
                       <>
                         <span className="inline-block w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        Starting...
+                        Starting Analysis...
                       </>
                     ) : (
                       'Start Analysis'

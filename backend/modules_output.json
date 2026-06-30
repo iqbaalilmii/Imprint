@@ -1,0 +1,1452 @@
+
+[
+  {
+    "Base": 272710353653760,
+    "File output": "Disabled",
+    "Name": "ntoskrnl.exe",
+    "Offset": 157264283755536,
+    "Path": "\\SystemRoot\\system32\\ntoskrnl.exe",
+    "Size": 17063936,
+    "__children": []
+  },
+  {
+    "Base": 272710350733312,
+    "File output": "Disabled",
+    "Name": "hal.dll",
+    "Offset": 157264283754000,
+    "Path": "\\SystemRoot\\system32\\hal.dll",
+    "Size": 24576,
+    "__children": []
+  },
+  {
+    "Base": 272710350798848,
+    "File output": "Disabled",
+    "Name": "kdcom.dll",
+    "Offset": 157264283756576,
+    "Path": "\\SystemRoot\\system32\\kd.dll",
+    "Size": 45056,
+    "__children": []
+  },
+  {
+    "Base": 272710348046336,
+    "File output": "Disabled",
+    "Name": "mcupdate.dll",
+    "Offset": 157264283757008,
+    "Path": "\\SystemRoot\\system32\\mcupdate_GenuineIntel.dll",
+    "Size": 2682880,
+    "__children": []
+  },
+  {
+    "Base": 272710351060992,
+    "File output": "Disabled",
+    "Name": "CLFS.SYS",
+    "Offset": 157264283757536,
+    "Path": "\\SystemRoot\\System32\\drivers\\CLFS.SYS",
+    "Size": 434176,
+    "__children": []
+  },
+  {
+    "Base": 272710350864384,
+    "File output": "Disabled",
+    "Name": "tm.sys",
+    "Offset": 157264283757968,
+    "Path": "\\SystemRoot\\System32\\drivers\\tm.sys",
+    "Size": 159744,
+    "__children": []
+  },
+  {
+    "Base": 272710351519744,
+    "File output": "Disabled",
+    "Name": "PSHED.dll",
+    "Offset": 157264283803728,
+    "Path": "\\SystemRoot\\system32\\PSHED.dll",
+    "Size": 106496,
+    "__children": []
+  },
+  {
+    "Base": 272710351650816,
+    "File output": "Disabled",
+    "Name": "BOOTVID.dll",
+    "Offset": 157264283804176,
+    "Path": "\\SystemRoot\\system32\\BOOTVID.dll",
+    "Size": 45056,
+    "__children": []
+  },
+  {
+    "Base": 272710351716352,
+    "File output": "Disabled",
+    "Name": "FLTMGR.SYS",
+    "Offset": 157264283804608,
+    "Path": "\\SystemRoot\\System32\\drivers\\FLTMGR.SYS",
+    "Size": 454656,
+    "__children": []
+  },
+  {
+    "Base": 272710373801984,
+    "File output": "Disabled",
+    "Name": "msrpc.sys",
+    "Offset": 157264283805056,
+    "Path": "\\SystemRoot\\System32\\drivers\\msrpc.sys",
+    "Size": 405504,
+    "__children": []
+  },
+  {
+    "Base": 272710373605376,
+    "File output": "Disabled",
+    "Name": "ksecdd.sys",
+    "Offset": 157264283805504,
+    "Path": "\\SystemRoot\\System32\\drivers\\ksecdd.sys",
+    "Size": 167936,
+    "__children": []
+  },
+  {
+    "Base": 272710372425728,
+    "File output": "Disabled",
+    "Name": "clipsp.sys",
+    "Offset": 157264283800496,
+    "Path": "\\SystemRoot\\System32\\drivers\\clipsp.sys",
+    "Size": 1126400,
+    "__children": []
+  },
+  {
+    "Base": 272710352175104,
+    "File output": "Disabled",
+    "Name": "cmimcext.sys",
+    "Offset": 157264283805952,
+    "Path": "\\SystemRoot\\System32\\drivers\\cmimcext.sys",
+    "Size": 57344,
+    "__children": []
+  },
+  {
+    "Base": 272710374260736,
+    "File output": "Disabled",
+    "Name": "werkernel.sys",
+    "Offset": 157264283806400,
+    "Path": "\\SystemRoot\\System32\\drivers\\werkernel.sys",
+    "Size": 69632,
+    "__children": []
+  },
+  {
+    "Base": 272710374391808,
+    "File output": "Disabled",
+    "Name": "ntosext.sys",
+    "Offset": 157264283806848,
+    "Path": "\\SystemRoot\\System32\\drivers\\ntosext.sys",
+    "Size": 49152,
+    "__children": []
+  },
+  {
+    "Base": 272710374457344,
+    "File output": "Disabled",
+    "Name": "CI.dll",
+    "Offset": 157264283807760,
+    "Path": "\\SystemRoot\\system32\\CI.dll",
+    "Size": 929792,
+    "__children": []
+  },
+  {
+    "Base": 272710375440384,
+    "File output": "Disabled",
+    "Name": "cng.sys",
+    "Offset": 157264283807280,
+    "Path": "\\SystemRoot\\System32\\drivers\\cng.sys",
+    "Size": 749568,
+    "__children": []
+  },
+  {
+    "Base": 272710376620032,
+    "File output": "Disabled",
+    "Name": "Wdf01000.sys",
+    "Offset": 157264283808224,
+    "Path": "\\SystemRoot\\system32\\drivers\\Wdf01000.sys",
+    "Size": 860160,
+    "__children": []
+  },
+  {
+    "Base": 272710376226816,
+    "File output": "Disabled",
+    "Name": "WDFLDR.SYS",
+    "Offset": 157264283808688,
+    "Path": "\\SystemRoot\\system32\\drivers\\WDFLDR.SYS",
+    "Size": 77824,
+    "__children": []
+  },
+  {
+    "Base": 272710376423424,
+    "File output": "Disabled",
+    "Name": "WppRecorder.sys",
+    "Offset": 157264283809120,
+    "Path": "\\SystemRoot\\system32\\drivers\\WppRecorder.sys",
+    "Size": 69632,
+    "__children": []
+  },
+  {
+    "Base": 272710376357888,
+    "File output": "Disabled",
+    "Name": "SleepStudyHelper.sys",
+    "Offset": 157264283809568,
+    "Path": "\\SystemRoot\\system32\\drivers\\SleepStudyHelper.sys",
+    "Size": 61440,
+    "__children": []
+  },
+  {
+    "Base": 272710377537536,
+    "File output": "Disabled",
+    "Name": "acpiex.sys",
+    "Offset": 157264283810016,
+    "Path": "\\SystemRoot\\System32\\Drivers\\acpiex.sys",
+    "Size": 155648,
+    "__children": []
+  },
+  {
+    "Base": 272710377734144,
+    "File output": "Disabled",
+    "Name": "SgrmAgent.sys",
+    "Offset": 157264283810448,
+    "Path": "\\SystemRoot\\system32\\drivers\\SgrmAgent.sys",
+    "Size": 106496,
+    "__children": []
+  },
+  {
+    "Base": 272710377865216,
+    "File output": "Disabled",
+    "Name": "ACPI.sys",
+    "Offset": 157264283810896,
+    "Path": "\\SystemRoot\\System32\\drivers\\ACPI.sys",
+    "Size": 835584,
+    "__children": []
+  },
+  {
+    "Base": 272710376554496,
+    "File output": "Disabled",
+    "Name": "WMILIB.SYS",
+    "Offset": 157264283811360,
+    "Path": "\\SystemRoot\\System32\\drivers\\WMILIB.SYS",
+    "Size": 49152,
+    "__children": []
+  },
+  {
+    "Base": 272710378782720,
+    "File output": "Disabled",
+    "Name": "intelpep.sys",
+    "Offset": 157264283812288,
+    "Path": "\\SystemRoot\\System32\\drivers\\intelpep.sys",
+    "Size": 438272,
+    "__children": []
+  },
+  {
+    "Base": 272710379241472,
+    "File output": "Disabled",
+    "Name": "WindowsTrustedRT.sys",
+    "Offset": 157264283812736,
+    "Path": "\\SystemRoot\\system32\\drivers\\WindowsTrustedRT.sys",
+    "Size": 94208,
+    "__children": []
+  },
+  {
+    "Base": 272710379372544,
+    "File output": "Disabled",
+    "Name": "IntelTA.sys",
+    "Offset": 157264283813184,
+    "Path": "\\SystemRoot\\System32\\drivers\\IntelTA.sys",
+    "Size": 45056,
+    "__children": []
+  },
+  {
+    "Base": 272710379438080,
+    "File output": "Disabled",
+    "Name": "WindowsTrustedRTProxy.sys",
+    "Offset": 157264283813616,
+    "Path": "\\SystemRoot\\System32\\drivers\\WindowsTrustedRTProxy.sys",
+    "Size": 45056,
+    "__children": []
+  },
+  {
+    "Base": 272710379503616,
+    "File output": "Disabled",
+    "Name": "pcw.sys",
+    "Offset": 157264283814080,
+    "Path": "\\SystemRoot\\System32\\drivers\\pcw.sys",
+    "Size": 81920,
+    "__children": []
+  },
+  {
+    "Base": 272710379634688,
+    "File output": "Disabled",
+    "Name": "msisadrv.sys",
+    "Offset": 157264283814512,
+    "Path": "\\SystemRoot\\System32\\drivers\\msisadrv.sys",
+    "Size": 45056,
+    "__children": []
+  },
+  {
+    "Base": 272710379700224,
+    "File output": "Disabled",
+    "Name": "pci.sys",
+    "Offset": 157264283814944,
+    "Path": "\\SystemRoot\\System32\\drivers\\pci.sys",
+    "Size": 483328,
+    "__children": []
+  },
+  {
+    "Base": 272710380224512,
+    "File output": "Disabled",
+    "Name": "vdrvroot.sys",
+    "Offset": 157264283815376,
+    "Path": "\\SystemRoot\\System32\\drivers\\vdrvroot.sys",
+    "Size": 86016,
+    "__children": []
+  },
+  {
+    "Base": 272710380355584,
+    "File output": "Disabled",
+    "Name": "pdc.sys",
+    "Offset": 157264283815952,
+    "Path": "\\SystemRoot\\system32\\drivers\\pdc.sys",
+    "Size": 192512,
+    "__children": []
+  },
+  {
+    "Base": 272710380552192,
+    "File output": "Disabled",
+    "Name": "CEA.sys",
+    "Offset": 157264283816384,
+    "Path": "\\SystemRoot\\system32\\drivers\\CEA.sys",
+    "Size": 102400,
+    "__children": []
+  },
+  {
+    "Base": 272710380683264,
+    "File output": "Disabled",
+    "Name": "partmgr.sys",
+    "Offset": 157264283875440,
+    "Path": "\\SystemRoot\\System32\\drivers\\partmgr.sys",
+    "Size": 200704,
+    "__children": []
+  },
+  {
+    "Base": 272710380945408,
+    "File output": "Disabled",
+    "Name": "spaceport.sys",
+    "Offset": 157264283816816,
+    "Path": "\\SystemRoot\\System32\\drivers\\spaceport.sys",
+    "Size": 696320,
+    "__children": []
+  },
+  {
+    "Base": 272710381666304,
+    "File output": "Disabled",
+    "Name": "volmgr.sys",
+    "Offset": 157264283875024,
+    "Path": "\\SystemRoot\\System32\\drivers\\volmgr.sys",
+    "Size": 102400,
+    "__children": []
+  },
+  {
+    "Base": 272710381797376,
+    "File output": "Disabled",
+    "Name": "volmgrx.sys",
+    "Offset": 157264283817280,
+    "Path": "\\SystemRoot\\System32\\drivers\\volmgrx.sys",
+    "Size": 405504,
+    "__children": []
+  },
+  {
+    "Base": 272710382256128,
+    "File output": "Disabled",
+    "Name": "mountmgr.sys",
+    "Offset": 157264283874192,
+    "Path": "\\SystemRoot\\System32\\drivers\\mountmgr.sys",
+    "Size": 122880,
+    "__children": []
+  },
+  {
+    "Base": 272710382387200,
+    "File output": "Disabled",
+    "Name": "storahci.sys",
+    "Offset": 157264283875856,
+    "Path": "\\SystemRoot\\System32\\drivers\\storahci.sys",
+    "Size": 204800,
+    "__children": []
+  },
+  {
+    "Base": 272710382649344,
+    "File output": "Disabled",
+    "Name": "storport.sys",
+    "Offset": 157264283817728,
+    "Path": "\\SystemRoot\\System32\\drivers\\storport.sys",
+    "Size": 733184,
+    "__children": []
+  },
+  {
+    "Base": 272710383435776,
+    "File output": "Disabled",
+    "Name": "EhStorClass.sys",
+    "Offset": 157264283818192,
+    "Path": "\\SystemRoot\\System32\\drivers\\EhStorClass.sys",
+    "Size": 114688,
+    "__children": []
+  },
+  {
+    "Base": 272710383566848,
+    "File output": "Disabled",
+    "Name": "fileinfo.sys",
+    "Offset": 157264283876272,
+    "Path": "\\SystemRoot\\System32\\drivers\\fileinfo.sys",
+    "Size": 106496,
+    "__children": []
+  },
+  {
+    "Base": 272710383697920,
+    "File output": "Disabled",
+    "Name": "Wof.sys",
+    "Offset": 157264283876688,
+    "Path": "\\SystemRoot\\System32\\Drivers\\Wof.sys",
+    "Size": 262144,
+    "__children": []
+  },
+  {
+    "Base": 272710384025600,
+    "File output": "Disabled",
+    "Name": "WdFilter.sys",
+    "Offset": 157264283818640,
+    "Path": "\\SystemRoot\\system32\\drivers\\wd\\WdFilter.sys",
+    "Size": 643072,
+    "__children": []
+  },
+  {
+    "Base": 272710384680960,
+    "File output": "Disabled",
+    "Name": "Ntfs.sys",
+    "Offset": 157264283802480,
+    "Path": "\\SystemRoot\\System32\\Drivers\\Ntfs.sys",
+    "Size": 2985984,
+    "__children": []
+  },
+  {
+    "Base": 272710387695616,
+    "File output": "Disabled",
+    "Name": "VBoxGuest.sys",
+    "Offset": 157264283819088,
+    "Path": "\\SystemRoot\\system32\\DRIVERS\\VBoxGuest.sys",
+    "Size": 389120,
+    "__children": []
+  },
+  {
+    "Base": 272710388088832,
+    "File output": "Disabled",
+    "Name": "Fs_Rec.sys",
+    "Offset": 157264283873360,
+    "Path": "\\SystemRoot\\System32\\Drivers\\Fs_Rec.sys",
+    "Size": 53248,
+    "__children": []
+  },
+  {
+    "Base": 272710388154368,
+    "File output": "Disabled",
+    "Name": "ndis.sys",
+    "Offset": 157264283819536,
+    "Path": "\\SystemRoot\\system32\\drivers\\ndis.sys",
+    "Size": 1503232,
+    "__children": []
+  },
+  {
+    "Base": 272710389661696,
+    "File output": "Disabled",
+    "Name": "NETIO.SYS",
+    "Offset": 157264283820048,
+    "Path": "\\SystemRoot\\system32\\drivers\\NETIO.SYS",
+    "Size": 622592,
+    "__children": []
+  },
+  {
+    "Base": 272710390317056,
+    "File output": "Disabled",
+    "Name": "ksecpkg.sys",
+    "Offset": 157264283873776,
+    "Path": "\\SystemRoot\\System32\\Drivers\\ksecpkg.sys",
+    "Size": 204800,
+    "__children": []
+  },
+  {
+    "Base": 272710390579200,
+    "File output": "Disabled",
+    "Name": "tcpip.sys",
+    "Offset": 157264283820512,
+    "Path": "\\SystemRoot\\System32\\drivers\\tcpip.sys",
+    "Size": 3059712,
+    "__children": []
+  },
+  {
+    "Base": 272710393659392,
+    "File output": "Disabled",
+    "Name": "fwpkclnt.sys",
+    "Offset": 157264283880480,
+    "Path": "\\SystemRoot\\System32\\drivers\\fwpkclnt.sys",
+    "Size": 520192,
+    "__children": []
+  },
+  {
+    "Base": 272710394183680,
+    "File output": "Disabled",
+    "Name": "wfplwfs.sys",
+    "Offset": 157264283874608,
+    "Path": "\\SystemRoot\\System32\\drivers\\wfplwfs.sys",
+    "Size": 196608,
+    "__children": []
+  },
+  {
+    "Base": 272710394445824,
+    "File output": "Disabled",
+    "Name": "fvevol.sys",
+    "Offset": 157264283821056,
+    "Path": "\\SystemRoot\\System32\\DRIVERS\\fvevol.sys",
+    "Size": 819200,
+    "__children": []
+  },
+  {
+    "Base": 272710395297792,
+    "File output": "Disabled",
+    "Name": "volume.sys",
+    "Offset": 157264283887792,
+    "Path": "\\SystemRoot\\System32\\drivers\\volume.sys",
+    "Size": 45056,
+    "__children": []
+  },
+  {
+    "Base": 272710395363328,
+    "File output": "Disabled",
+    "Name": "volsnap.sys",
+    "Offset": 157264283880048,
+    "Path": "\\SystemRoot\\System32\\drivers\\volsnap.sys",
+    "Size": 446464,
+    "__children": []
+  },
+  {
+    "Base": 272710395822080,
+    "File output": "Disabled",
+    "Name": "rdyboost.sys",
+    "Offset": 157264283879616,
+    "Path": "\\SystemRoot\\System32\\drivers\\rdyboost.sys",
+    "Size": 327680,
+    "__children": []
+  },
+  {
+    "Base": 272710396215296,
+    "File output": "Disabled",
+    "Name": "mup.sys",
+    "Offset": 157264283884880,
+    "Path": "\\SystemRoot\\System32\\Drivers\\mup.sys",
+    "Size": 155648,
+    "__children": []
+  },
+  {
+    "Base": 272710396411904,
+    "File output": "Disabled",
+    "Name": "iorate.sys",
+    "Offset": 157264283886544,
+    "Path": "\\SystemRoot\\system32\\drivers\\iorate.sys",
+    "Size": 73728,
+    "__children": []
+  },
+  {
+    "Base": 272710396674048,
+    "File output": "Disabled",
+    "Name": "disk.sys",
+    "Offset": 157264283886128,
+    "Path": "\\SystemRoot\\System32\\drivers\\disk.sys",
+    "Size": 114688,
+    "__children": []
+  },
+  {
+    "Base": 272710396805120,
+    "File output": "Disabled",
+    "Name": "CLASSPNP.SYS",
+    "Offset": 157264283877888,
+    "Path": "\\SystemRoot\\System32\\drivers\\CLASSPNP.SYS",
+    "Size": 442368,
+    "__children": []
+  },
+  {
+    "Base": 272710417645568,
+    "File output": "Disabled",
+    "Name": "crashdmp.sys",
+    "Offset": 157264291793904,
+    "Path": "\\SystemRoot\\System32\\Drivers\\crashdmp.sys",
+    "Size": 122880,
+    "__children": []
+  },
+  {
+    "Base": 272710401916928,
+    "File output": "Disabled",
+    "Name": "cdrom.sys",
+    "Offset": 157264291787664,
+    "Path": "\\SystemRoot\\System32\\drivers\\cdrom.sys",
+    "Size": 196608,
+    "__children": []
+  },
+  {
+    "Base": 272710402179072,
+    "File output": "Disabled",
+    "Name": "filecrypt.sys",
+    "Offset": 157264287613664,
+    "Path": "\\SystemRoot\\system32\\drivers\\filecrypt.sys",
+    "Size": 86016,
+    "__children": []
+  },
+  {
+    "Base": 272710402310144,
+    "File output": "Disabled",
+    "Name": "tbs.sys",
+    "Offset": 157264291792656,
+    "Path": "\\SystemRoot\\system32\\drivers\\tbs.sys",
+    "Size": 57344,
+    "__children": []
+  },
+  {
+    "Base": 272710402375680,
+    "File output": "Disabled",
+    "Name": "Null.SYS",
+    "Offset": 157264293767600,
+    "Path": "\\SystemRoot\\System32\\Drivers\\Null.SYS",
+    "Size": 40960,
+    "__children": []
+  },
+  {
+    "Base": 272710402441216,
+    "File output": "Disabled",
+    "Name": "Beep.SYS",
+    "Offset": 157264774144784,
+    "Path": "\\SystemRoot\\System32\\Drivers\\Beep.SYS",
+    "Size": 40960,
+    "__children": []
+  },
+  {
+    "Base": 272710402506752,
+    "File output": "Disabled",
+    "Name": "dxgkrnl.sys",
+    "Offset": 157264295785136,
+    "Path": "\\SystemRoot\\System32\\drivers\\dxgkrnl.sys",
+    "Size": 3817472,
+    "__children": []
+  },
+  {
+    "Base": 272710406373376,
+    "File output": "Disabled",
+    "Name": "watchdog.sys",
+    "Offset": 157264291790992,
+    "Path": "\\SystemRoot\\System32\\drivers\\watchdog.sys",
+    "Size": 98304,
+    "__children": []
+  },
+  {
+    "Base": 272710406504448,
+    "File output": "Disabled",
+    "Name": "BasicDisplay.sys",
+    "Offset": 157264287609344,
+    "Path": "\\SystemRoot\\System32\\DriverStore\\FileRepository\\basicdisplay.inf_amd64_65ab9a260dbf7467\\BasicDisplay.sys",
+    "Size": 90112,
+    "__children": []
+  },
+  {
+    "Base": 272710406635520,
+    "File output": "Disabled",
+    "Name": "BasicRender.sys",
+    "Offset": 157264287614528,
+    "Path": "\\SystemRoot\\System32\\DriverStore\\FileRepository\\basicrender.inf_amd64_df49c4daa6251397\\BasicRender.sys",
+    "Size": 69632,
+    "__children": []
+  },
+  {
+    "Base": 272710406766592,
+    "File output": "Disabled",
+    "Name": "Npfs.SYS",
+    "Offset": 157264291791408,
+    "Path": "\\SystemRoot\\System32\\Drivers\\Npfs.SYS",
+    "Size": 114688,
+    "__children": []
+  },
+  {
+    "Base": 272710406897664,
+    "File output": "Disabled",
+    "Name": "Msfs.SYS",
+    "Offset": 157264294155216,
+    "Path": "\\SystemRoot\\System32\\Drivers\\Msfs.SYS",
+    "Size": 69632,
+    "__children": []
+  },
+  {
+    "Base": 272710407028736,
+    "File output": "Disabled",
+    "Name": "CimFS.SYS",
+    "Offset": 157264294153552,
+    "Path": "\\SystemRoot\\System32\\Drivers\\CimFS.SYS",
+    "Size": 110592,
+    "__children": []
+  },
+  {
+    "Base": 272710407159808,
+    "File output": "Disabled",
+    "Name": "tdx.sys",
+    "Offset": 157264294153136,
+    "Path": "\\SystemRoot\\system32\\DRIVERS\\tdx.sys",
+    "Size": 139264,
+    "__children": []
+  },
+  {
+    "Base": 272710407356416,
+    "File output": "Disabled",
+    "Name": "TDI.SYS",
+    "Offset": 157264294152720,
+    "Path": "\\SystemRoot\\system32\\DRIVERS\\TDI.SYS",
+    "Size": 65536,
+    "__children": []
+  },
+  {
+    "Base": 272710407487488,
+    "File output": "Disabled",
+    "Name": "netbt.sys",
+    "Offset": 157264287609776,
+    "Path": "\\SystemRoot\\System32\\DRIVERS\\netbt.sys",
+    "Size": 376832,
+    "__children": []
+  },
+  {
+    "Base": 272710407880704,
+    "File output": "Disabled",
+    "Name": "afunix.sys",
+    "Offset": 157264287610640,
+    "Path": "\\SystemRoot\\system32\\drivers\\afunix.sys",
+    "Size": 77824,
+    "__children": []
+  },
+  {
+    "Base": 272710408011776,
+    "File output": "Disabled",
+    "Name": "afd.sys",
+    "Offset": 157264286761184,
+    "Path": "\\SystemRoot\\system32\\drivers\\afd.sys",
+    "Size": 667648,
+    "__children": []
+  },
+  {
+    "Base": 272710408732672,
+    "File output": "Disabled",
+    "Name": "vwififlt.sys",
+    "Offset": 157264294151472,
+    "Path": "\\SystemRoot\\System32\\drivers\\vwififlt.sys",
+    "Size": 106496,
+    "__children": []
+  },
+  {
+    "Base": 272710408863744,
+    "File output": "Disabled",
+    "Name": "pacer.sys",
+    "Offset": 157264294150224,
+    "Path": "\\SystemRoot\\System32\\drivers\\pacer.sys",
+    "Size": 176128,
+    "__children": []
+  },
+  {
+    "Base": 272710409060352,
+    "File output": "Disabled",
+    "Name": "ndiscap.sys",
+    "Offset": 157264294157712,
+    "Path": "\\SystemRoot\\System32\\drivers\\ndiscap.sys",
+    "Size": 81920,
+    "__children": []
+  },
+  {
+    "Base": 272710409191424,
+    "File output": "Disabled",
+    "Name": "netbios.sys",
+    "Offset": 157264294559888,
+    "Path": "\\SystemRoot\\system32\\drivers\\netbios.sys",
+    "Size": 81920,
+    "__children": []
+  },
+  {
+    "Base": 272710409322496,
+    "File output": "Disabled",
+    "Name": "VBoxSF.sys",
+    "Offset": 157264294142256,
+    "Path": "\\SystemRoot\\System32\\drivers\\VBoxSF.sys",
+    "Size": 532480,
+    "__children": []
+  },
+  {
+    "Base": 272710409912320,
+    "File output": "Disabled",
+    "Name": "Vid.sys",
+    "Offset": 157264294138368,
+    "Path": "\\SystemRoot\\System32\\drivers\\Vid.sys",
+    "Size": 659456,
+    "__children": []
+  },
+  {
+    "Base": 272710410633216,
+    "File output": "Disabled",
+    "Name": "winhvr.sys",
+    "Offset": 157264294139664,
+    "Path": "\\SystemRoot\\System32\\drivers\\winhvr.sys",
+    "Size": 135168,
+    "__children": []
+  },
+  {
+    "Base": 272710410829824,
+    "File output": "Disabled",
+    "Name": "rdbss.sys",
+    "Offset": 157264294140960,
+    "Path": "\\SystemRoot\\system32\\DRIVERS\\rdbss.sys",
+    "Size": 503808,
+    "__children": []
+  },
+  {
+    "Base": 272710411354112,
+    "File output": "Disabled",
+    "Name": "nsiproxy.sys",
+    "Offset": 157264294557392,
+    "Path": "\\SystemRoot\\system32\\drivers\\nsiproxy.sys",
+    "Size": 73728,
+    "__children": []
+  },
+  {
+    "Base": 272710411485184,
+    "File output": "Disabled",
+    "Name": "npsvctrig.sys",
+    "Offset": 157264294141392,
+    "Path": "\\SystemRoot\\System32\\drivers\\npsvctrig.sys",
+    "Size": 57344,
+    "__children": []
+  },
+  {
+    "Base": 272710411550720,
+    "File output": "Disabled",
+    "Name": "mssmbios.sys",
+    "Offset": 157264294560304,
+    "Path": "\\SystemRoot\\System32\\drivers\\mssmbios.sys",
+    "Size": 65536,
+    "__children": []
+  },
+  {
+    "Base": 272710411681792,
+    "File output": "Disabled",
+    "Name": "gpuenergydrv.sys",
+    "Offset": 157264294555728,
+    "Path": "\\SystemRoot\\System32\\drivers\\gpuenergydrv.sys",
+    "Size": 40960,
+    "__children": []
+  },
+  {
+    "Base": 272710411747328,
+    "File output": "Disabled",
+    "Name": "dfsc.sys",
+    "Offset": 157264294557808,
+    "Path": "\\SystemRoot\\System32\\Drivers\\dfsc.sys",
+    "Size": 180224,
+    "__children": []
+  },
+  {
+    "Base": 272710412075008,
+    "File output": "Disabled",
+    "Name": "bam.sys",
+    "Offset": 157264294562800,
+    "Path": "\\SystemRoot\\system32\\drivers\\bam.sys",
+    "Size": 94208,
+    "__children": []
+  },
+  {
+    "Base": 272710412206080,
+    "File output": "Disabled",
+    "Name": "ahcache.sys",
+    "Offset": 157264294142688,
+    "Path": "\\SystemRoot\\system32\\DRIVERS\\ahcache.sys",
+    "Size": 319488,
+    "__children": []
+  },
+  {
+    "Base": 272710412533760,
+    "File output": "Disabled",
+    "Name": "CompositeBus.sys",
+    "Offset": 157264294143984,
+    "Path": "\\SystemRoot\\System32\\DriverStore\\FileRepository\\compositebus.inf_amd64_7500cffa210c6946\\CompositeBus.sys",
+    "Size": 73728,
+    "__children": []
+  },
+  {
+    "Base": 272710412664832,
+    "File output": "Disabled",
+    "Name": "kdnic.sys",
+    "Offset": 157264294154800,
+    "Path": "\\SystemRoot\\System32\\drivers\\kdnic.sys",
+    "Size": 53248,
+    "__children": []
+  },
+  {
+    "Base": 272710412730368,
+    "File output": "Disabled",
+    "Name": "umbus.sys",
+    "Offset": 157264294156464,
+    "Path": "\\SystemRoot\\System32\\DriverStore\\FileRepository\\umbus.inf_amd64_b78a9c5b6fd62c27\\umbus.sys",
+    "Size": 86016,
+    "__children": []
+  },
+  {
+    "Base": 272710412861440,
+    "File output": "Disabled",
+    "Name": "CAD.sys",
+    "Offset": 157264294558224,
+    "Path": "\\SystemRoot\\System32\\drivers\\CAD.sys",
+    "Size": 86016,
+    "__children": []
+  },
+  {
+    "Base": 272710412992512,
+    "File output": "Disabled",
+    "Name": "i8042prt.sys",
+    "Offset": 157264294558640,
+    "Path": "\\SystemRoot\\System32\\drivers\\i8042prt.sys",
+    "Size": 135168,
+    "__children": []
+  },
+  {
+    "Base": 272710413189120,
+    "File output": "Disabled",
+    "Name": "kbdclass.sys",
+    "Offset": 157264294556560,
+    "Path": "\\SystemRoot\\System32\\drivers\\kbdclass.sys",
+    "Size": 81920,
+    "__children": []
+  },
+  {
+    "Base": 272710413320192,
+    "File output": "Disabled",
+    "Name": "VBoxMouse.sys",
+    "Offset": 157264294140096,
+    "Path": "\\SystemRoot\\system32\\DRIVERS\\VBoxMouse.sys",
+    "Size": 339968,
+    "__children": []
+  },
+  {
+    "Base": 272710413713408,
+    "File output": "Disabled",
+    "Name": "mouclass.sys",
+    "Offset": 157264294559056,
+    "Path": "\\SystemRoot\\System32\\drivers\\mouclass.sys",
+    "Size": 77824,
+    "__children": []
+  },
+  {
+    "Base": 272710413844480,
+    "File output": "Disabled",
+    "Name": "VBoxWddm.sys",
+    "Offset": 157264785650176,
+    "Path": "\\SystemRoot\\System32\\drivers\\VBoxWddm.sys",
+    "Size": 532480,
+    "__children": []
+  },
+  {
+    "Base": 272710414434304,
+    "File output": "Disabled",
+    "Name": "E1G6032E.sys",
+    "Offset": 157264774144384,
+    "Path": "\\SystemRoot\\System32\\drivers\\E1G6032E.sys",
+    "Size": 151552,
+    "__children": []
+  },
+  {
+    "Base": 272710414630912,
+    "File output": "Disabled",
+    "Name": "HDAudBus.sys",
+    "Offset": 157264294561968,
+    "Path": "\\SystemRoot\\System32\\drivers\\HDAudBus.sys",
+    "Size": 151552,
+    "__children": []
+  },
+  {
+    "Base": 272710414827520,
+    "File output": "Disabled",
+    "Name": "portcls.sys",
+    "Offset": 157264785654496,
+    "Path": "\\SystemRoot\\System32\\drivers\\portcls.sys",
+    "Size": 417792,
+    "__children": []
+  },
+  {
+    "Base": 272710415286272,
+    "File output": "Disabled",
+    "Name": "drmk.sys",
+    "Offset": 157264294556976,
+    "Path": "\\SystemRoot\\System32\\drivers\\drmk.sys",
+    "Size": 135168,
+    "__children": []
+  },
+  {
+    "Base": 272710415482880,
+    "File output": "Disabled",
+    "Name": "ks.sys",
+    "Offset": 157264785650608,
+    "Path": "\\SystemRoot\\System32\\drivers\\ks.sys",
+    "Size": 483328,
+    "__children": []
+  },
+  {
+    "Base": 272710416007168,
+    "File output": "Disabled",
+    "Name": "USBXHCI.SYS",
+    "Offset": 157264286800608,
+    "Path": "\\SystemRoot\\System32\\drivers\\USBXHCI.SYS",
+    "Size": 622592,
+    "__children": []
+  },
+  {
+    "Base": 272710416662528,
+    "File output": "Disabled",
+    "Name": "ucx01000.sys",
+    "Offset": 157264785655360,
+    "Path": "\\SystemRoot\\system32\\drivers\\ucx01000.sys",
+    "Size": 278528,
+    "__children": []
+  },
+  {
+    "Base": 272710416990208,
+    "File output": "Disabled",
+    "Name": "CmBatt.sys",
+    "Offset": 157264301254768,
+    "Path": "\\SystemRoot\\System32\\drivers\\CmBatt.sys",
+    "Size": 61440,
+    "__children": []
+  },
+  {
+    "Base": 272710417055744,
+    "File output": "Disabled",
+    "Name": "BATTC.SYS",
+    "Offset": 157264301255184,
+    "Path": "\\SystemRoot\\System32\\drivers\\BATTC.SYS",
+    "Size": 65536,
+    "__children": []
+  },
+  {
+    "Base": 272710417186816,
+    "File output": "Disabled",
+    "Name": "intelppm.sys",
+    "Offset": 157264301256016,
+    "Path": "\\SystemRoot\\System32\\drivers\\intelppm.sys",
+    "Size": 262144,
+    "__children": []
+  },
+  {
+    "Base": 272710411943936,
+    "File output": "Disabled",
+    "Name": "NdisVirtualBus.sys",
+    "Offset": 157264386684912,
+    "Path": "\\SystemRoot\\System32\\drivers\\NdisVirtualBus.sys",
+    "Size": 53248,
+    "__children": []
+  },
+  {
+    "Base": 272710412009472,
+    "File output": "Disabled",
+    "Name": "swenum.sys",
+    "Offset": 157264301259344,
+    "Path": "\\SystemRoot\\System32\\DriverStore\\FileRepository\\swenum.inf_amd64_16a14542b63c02af\\swenum.sys",
+    "Size": 49152,
+    "__children": []
+  },
+  {
+    "Base": 272710421315584,
+    "File output": "Disabled",
+    "Name": "rdpbus.sys",
+    "Offset": 157264301254352,
+    "Path": "\\SystemRoot\\System32\\drivers\\rdpbus.sys",
+    "Size": 57344,
+    "__children": []
+  },
+  {
+    "Base": 272710421381120,
+    "File output": "Disabled",
+    "Name": "UsbHub3.sys",
+    "Offset": 157264286819424,
+    "Path": "\\SystemRoot\\System32\\drivers\\UsbHub3.sys",
+    "Size": 667648,
+    "__children": []
+  },
+  {
+    "Base": 272710422102016,
+    "File output": "Disabled",
+    "Name": "USBD.SYS",
+    "Offset": 157264301253520,
+    "Path": "\\SystemRoot\\System32\\drivers\\USBD.SYS",
+    "Size": 57344,
+    "__children": []
+  },
+  {
+    "Base": 272710422167552,
+    "File output": "Disabled",
+    "Name": "HdAudio.sys",
+    "Offset": 157264386680592,
+    "Path": "\\SystemRoot\\System32\\drivers\\HdAudio.sys",
+    "Size": 454656,
+    "__children": []
+  },
+  {
+    "Base": 272710422626304,
+    "File output": "Disabled",
+    "Name": "ksthunk.sys",
+    "Offset": 157264294563216,
+    "Path": "\\SystemRoot\\system32\\drivers\\ksthunk.sys",
+    "Size": 61440,
+    "__children": []
+  },
+  {
+    "Base": 272710418563072,
+    "File output": "Disabled",
+    "Name": "hidusb.sys",
+    "Offset": 157264294151056,
+    "Path": "\\SystemRoot\\System32\\drivers\\hidusb.sys",
+    "Size": 73728,
+    "__children": []
+  },
+  {
+    "Base": 272710418694144,
+    "File output": "Disabled",
+    "Name": "HIDCLASS.SYS",
+    "Offset": 157264375769616,
+    "Path": "\\SystemRoot\\System32\\drivers\\HIDCLASS.SYS",
+    "Size": 258048,
+    "__children": []
+  },
+  {
+    "Base": 272710418956288,
+    "File output": "Disabled",
+    "Name": "HIDPARSE.SYS",
+    "Offset": 157264375771696,
+    "Path": "\\SystemRoot\\System32\\drivers\\HIDPARSE.SYS",
+    "Size": 77824,
+    "__children": []
+  },
+  {
+    "Base": 272710419087360,
+    "File output": "Disabled",
+    "Name": "mouhid.sys",
+    "Offset": 157264375769200,
+    "Path": "\\SystemRoot\\System32\\drivers\\mouhid.sys",
+    "Size": 65536,
+    "__children": []
+  },
+  {
+    "Base": 272710419218432,
+    "File output": "Disabled",
+    "Name": "cdfs.sys",
+    "Offset": 157264774154000,
+    "Path": "\\SystemRoot\\system32\\DRIVERS\\cdfs.sys",
+    "Size": 126976,
+    "__children": []
+  },
+  {
+    "Base": 272710419415040,
+    "File output": "Disabled",
+    "Name": "dump_storport.sys",
+    "Offset": 157264386681888,
+    "Path": "\\SystemRoot\\System32\\Drivers\\dump_diskdump.sys",
+    "Size": 57344,
+    "__children": []
+  },
+  {
+    "Base": 272710419742720,
+    "File output": "Disabled",
+    "Name": "dump_storahci.sys",
+    "Offset": 157264386684480,
+    "Path": "\\SystemRoot\\System32\\drivers\\dump_storahci.sys",
+    "Size": 204800,
+    "__children": []
+  },
+  {
+    "Base": 272710420135936,
+    "File output": "Disabled",
+    "Name": "dump_dumpfve.sys",
+    "Offset": 157264287614096,
+    "Path": "\\SystemRoot\\System32\\Drivers\\dump_dumpfve.sys",
+    "Size": 118784,
+    "__children": []
+  },
+  {
+    "Base": 141107768983552,
+    "File output": "Disabled",
+    "Name": "win32k.sys",
+    "Offset": 157264295735312,
+    "Path": "\\SystemRoot\\System32\\win32k.sys",
+    "Size": 630784,
+    "__children": []
+  },
+  {
+    "Base": 141107759415296,
+    "File output": "Disabled",
+    "Name": "win32kbase.sys",
+    "Offset": 157264296830448,
+    "Path": "\\SystemRoot\\System32\\win32kbase.sys",
+    "Size": 2985984,
+    "__children": []
+  },
+  {
+    "Base": 141107762429952,
+    "File output": "Disabled",
+    "Name": "win32kfull.sys",
+    "Offset": 157264339558880,
+    "Path": "\\SystemRoot\\System32\\win32kfull.sys",
+    "Size": 3891200,
+    "__children": []
+  },
+  {
+    "Base": 272710420267008,
+    "File output": "Disabled",
+    "Name": "monitor.sys",
+    "Offset": 157264664767824,
+    "Path": "\\SystemRoot\\System32\\drivers\\monitor.sys",
+    "Size": 110592,
+    "__children": []
+  },
+  {
+    "Base": 272710434553856,
+    "File output": "Disabled",
+    "Name": "dxgmms2.sys",
+    "Offset": 157264540231056,
+    "Path": "\\SystemRoot\\System32\\drivers\\dxgmms2.sys",
+    "Size": 921600,
+    "__children": []
+  },
+  {
+    "Base": 141107766362112,
+    "File output": "Disabled",
+    "Name": "cdd.dll",
+    "Offset": 157264301455392,
+    "Path": "\\SystemRoot\\System32\\cdd.dll",
+    "Size": 303104,
+    "__children": []
+  },
+  {
+    "Base": 272710435536896,
+    "File output": "Disabled",
+    "Name": "luafv.sys",
+    "Offset": 157264386989312,
+    "Path": "\\SystemRoot\\system32\\drivers\\luafv.sys",
+    "Size": 167936,
+    "__children": []
+  },
+  {
+    "Base": 272710435733504,
+    "File output": "Disabled",
+    "Name": "wcifs.sys",
+    "Offset": 157264664771984,
+    "Path": "\\SystemRoot\\system32\\drivers\\wcifs.sys",
+    "Size": 221184,
+    "__children": []
+  },
+  {
+    "Base": 272710435995648,
+    "File output": "Disabled",
+    "Name": "cldflt.sys",
+    "Offset": 157264386983696,
+    "Path": "\\SystemRoot\\system32\\drivers\\cldflt.sys",
+    "Size": 528384,
+    "__children": []
+  },
+  {
+    "Base": 272710436585472,
+    "File output": "Disabled",
+    "Name": "storqosflt.sys",
+    "Offset": 157264386984128,
+    "Path": "\\SystemRoot\\system32\\drivers\\storqosflt.sys",
+    "Size": 106496,
+    "__children": []
+  },
+  {
+    "Base": 272710436716544,
+    "File output": "Disabled",
+    "Name": "bindflt.sys",
+    "Offset": 157264664767408,
+    "Path": "\\SystemRoot\\system32\\drivers\\bindflt.sys",
+    "Size": 163840,
+    "__children": []
+  },
+  {
+    "Base": 272710436913152,
+    "File output": "Disabled",
+    "Name": "lltdio.sys",
+    "Offset": 157264283888624,
+    "Path": "\\SystemRoot\\system32\\drivers\\lltdio.sys",
+    "Size": 98304,
+    "__children": []
+  },
+  {
+    "Base": 272710437044224,
+    "File output": "Disabled",
+    "Name": "mslldp.sys",
+    "Offset": 157264664770736,
+    "Path": "\\SystemRoot\\system32\\drivers\\mslldp.sys",
+    "Size": 98304,
+    "__children": []
+  },
+  {
+    "Base": 272710437175296,
+    "File output": "Disabled",
+    "Name": "rspndr.sys",
+    "Offset": 157264664764912,
+    "Path": "\\SystemRoot\\system32\\drivers\\rspndr.sys",
+    "Size": 110592,
+    "__children": []
+  },
+  {
+    "Base": 272710422757376,
+    "File output": "Disabled",
+    "Name": "msquic.sys",
+    "Offset": 157264386017904,
+    "Path": "\\SystemRoot\\system32\\drivers\\msquic.sys",
+    "Size": 352256,
+    "__children": []
+  },
+  {
+    "Base": 272710423150592,
+    "File output": "Disabled",
+    "Name": "HTTP.sys",
+    "Offset": 157264291677424,
+    "Path": "\\SystemRoot\\system32\\drivers\\HTTP.sys",
+    "Size": 1593344,
+    "__children": []
+  },
+  {
+    "Base": 272710424788992,
+    "File output": "Disabled",
+    "Name": "bowser.sys",
+    "Offset": 157264386015744,
+    "Path": "\\SystemRoot\\system32\\DRIVERS\\bowser.sys",
+    "Size": 151552,
+    "__children": []
+  },
+  {
+    "Base": 272710424985600,
+    "File output": "Disabled",
+    "Name": "mrxsmb.sys",
+    "Offset": 157264376836112,
+    "Path": "\\SystemRoot\\system32\\DRIVERS\\mrxsmb.sys",
+    "Size": 606208,
+    "__children": []
+  },
+  {
+    "Base": 272710425640960,
+    "File output": "Disabled",
+    "Name": "mrxsmb20.sys",
+    "Offset": 157264386016608,
+    "Path": "\\SystemRoot\\system32\\DRIVERS\\mrxsmb20.sys",
+    "Size": 282624,
+    "__children": []
+  },
+  {
+    "Base": 272710425968640,
+    "File output": "Disabled",
+    "Name": "mpsdrv.sys",
+    "Offset": 157264774153168,
+    "Path": "\\SystemRoot\\System32\\drivers\\mpsdrv.sys",
+    "Size": 106496,
+    "__children": []
+  },
+  {
+    "Base": 272710426099712,
+    "File output": "Disabled",
+    "Name": "srvnet.sys",
+    "Offset": 157264386020496,
+    "Path": "\\SystemRoot\\System32\\DRIVERS\\srvnet.sys",
+    "Size": 339968,
+    "__children": []
+  },
+  {
+    "Base": 272710426492928,
+    "File output": "Disabled",
+    "Name": "srv2.sys",
+    "Offset": 157264386020928,
+    "Path": "\\SystemRoot\\System32\\DRIVERS\\srv2.sys",
+    "Size": 815104,
+    "__children": []
+  },
+  {
+    "Base": 272710427344896,
+    "File output": "Disabled",
+    "Name": "mmcss.sys",
+    "Offset": 157264386021360,
+    "Path": "\\SystemRoot\\system32\\drivers\\mmcss.sys",
+    "Size": 81920,
+    "__children": []
+  },
+  {
+    "Base": 272710427475968,
+    "File output": "Disabled",
+    "Name": "mrxsmb10.sys",
+    "Offset": 157264386021792,
+    "Path": "\\SystemRoot\\system32\\DRIVERS\\mrxsmb10.sys",
+    "Size": 335872,
+    "__children": []
+  },
+  {
+    "Base": 272710427869184,
+    "File output": "Disabled",
+    "Name": "Ndu.sys",
+    "Offset": 157264375774608,
+    "Path": "\\SystemRoot\\system32\\drivers\\Ndu.sys",
+    "Size": 159744,
+    "__children": []
+  },
+  {
+    "Base": 272710428065792,
+    "File output": "Disabled",
+    "Name": "peauth.sys",
+    "Offset": 157264351557648,
+    "Path": "\\SystemRoot\\system32\\drivers\\peauth.sys",
+    "Size": 876544,
+    "__children": []
+  },
+  {
+    "Base": 272710428983296,
+    "File output": "Disabled",
+    "Name": "tcpipreg.sys",
+    "Offset": 157264283884048,
+    "Path": "\\SystemRoot\\System32\\drivers\\tcpipreg.sys",
+    "Size": 86016,
+    "__children": []
+  },
+  {
+    "Base": 272710429114368,
+    "File output": "Disabled",
+    "Name": "condrv.sys",
+    "Offset": 157264290859184,
+    "Path": "\\SystemRoot\\System32\\drivers\\condrv.sys",
+    "Size": 73728,
+    "__children": []
+  },
+  {
+    "Base": 272710429245440,
+    "File output": "Disabled",
+    "Name": "KslD.sys",
+    "Offset": 157264358003520,
+    "Path": "\\SystemRoot\\system32\\drivers\\wd\\KslD.sys",
+    "Size": 98304,
+    "__children": []
+  },
+  {
+    "Base": 272710429376512,
+    "File output": "Disabled",
+    "Name": "WdNisDrv.sys",
+    "Offset": 157264375770032,
+    "Path": "\\SystemRoot\\system32\\drivers\\wd\\WdNisDrv.sys",
+    "Size": 110592,
+    "__children": []
+  },
+  {
+    "Base": 272710429573120,
+    "File output": "Disabled",
+    "Name": "ad_driver.10.sys",
+    "Offset": 157264354814208,
+    "Path": "\\??\\C:\\Users\\VOLTCO~1\\AppData\\Local\\Temp\\ad_driver.10.sys",
+    "Size": 40960,
+    "__children": []
+  }
+]

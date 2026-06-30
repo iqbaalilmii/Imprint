@@ -52,4 +52,4 @@ Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 
 # Jalankan server menggunakan Python secara langsung dari dalam VENV
-& $venvPython backend/app.py
+& $venvPython backend/src/app.py

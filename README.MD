@@ -94,11 +94,23 @@ docker-compose up --build
 
 ### Tanpa Docker (Manual)
 
+Untuk mengaktifkan integrasi reputasi IP VirusTotal, Anda harus menyetel environment variable `VIRUSTOTAL_API_KEY` sebelum menjalankan backend.
+
 ```bash
-# --- Backend ---
+# --- Windows (PowerShell) ---
+$env:VIRUSTOTAL_API_KEY="your_api_key_here"
+
+# --- Windows (CMD) ---
+set VIRUSTOTAL_API_KEY=your_api_key_here
+
+# --- Linux / macOS ---
+export VIRUSTOTAL_API_KEY="your_api_key_here"
+
+# --- Menjalankan Backend ---
 cd backend
 pip install -r requirements.txt
-uvicorn main:app --reload --port 8000
+uvicorn src.app:app --reload --port 8000
+```
 
 # --- Frontend (terminal baru) ---
 cd frontend

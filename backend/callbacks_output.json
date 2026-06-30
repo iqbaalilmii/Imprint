@@ -1,0 +1,1659 @@
+
+[
+  {
+    "Callback": 272710384362304,
+    "Detail": null,
+    "Module": "WdFilter",
+    "Symbol": null,
+    "Type": "PspLoadImageNotifyRoutine",
+    "__children": []
+  },
+  {
+    "Callback": 272710412331808,
+    "Detail": null,
+    "Module": "ahcache",
+    "Symbol": null,
+    "Type": "PspLoadImageNotifyRoutine",
+    "__children": []
+  },
+  {
+    "Callback": 272710429285776,
+    "Detail": null,
+    "Module": "KslD",
+    "Symbol": null,
+    "Type": "PspLoadImageNotifyRoutine",
+    "__children": []
+  },
+  {
+    "Callback": 272710384419040,
+    "Detail": null,
+    "Module": "WdFilter",
+    "Symbol": null,
+    "Type": "PspCreateThreadNotifyRoutine",
+    "__children": []
+  },
+  {
+    "Callback": 272710384458320,
+    "Detail": null,
+    "Module": "WdFilter",
+    "Symbol": null,
+    "Type": "PspCreateThreadNotifyRoutine",
+    "__children": []
+  },
+  {
+    "Callback": 272710427349088,
+    "Detail": null,
+    "Module": "mmcss",
+    "Symbol": null,
+    "Type": "PspCreateThreadNotifyRoutine",
+    "__children": []
+  },
+  {
+    "Callback": 272710429285936,
+    "Detail": null,
+    "Module": "KslD",
+    "Symbol": null,
+    "Type": "PspCreateThreadNotifyRoutine",
+    "__children": []
+  },
+  {
+    "Callback": 272710429286096,
+    "Detail": null,
+    "Module": "KslD",
+    "Symbol": null,
+    "Type": "PspCreateThreadNotifyRoutine",
+    "__children": []
+  },
+  {
+    "Callback": 272710356916128,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "ViCreateProcessCallback",
+    "Type": "PspCreateProcessNotifyRoutine",
+    "__children": []
+  },
+  {
+    "Callback": 272710375468144,
+    "Detail": null,
+    "Module": "cng",
+    "Symbol": null,
+    "Type": "PspCreateProcessNotifyRoutine",
+    "__children": []
+  },
+  {
+    "Callback": 272710384475392,
+    "Detail": null,
+    "Module": "WdFilter",
+    "Symbol": null,
+    "Type": "PspCreateProcessNotifyRoutine",
+    "__children": []
+  },
+  {
+    "Callback": 272710373718432,
+    "Detail": null,
+    "Module": "ksecdd",
+    "Symbol": null,
+    "Type": "PspCreateProcessNotifyRoutine",
+    "__children": []
+  },
+  {
+    "Callback": 272710390597088,
+    "Detail": null,
+    "Module": "tcpip",
+    "Symbol": null,
+    "Type": "PspCreateProcessNotifyRoutine",
+    "__children": []
+  },
+  {
+    "Callback": 272710396467504,
+    "Detail": null,
+    "Module": "iorate",
+    "Symbol": "EVENT_WHEA_LOG_ENTRY",
+    "Type": "PspCreateProcessNotifyRoutine",
+    "__children": []
+  },
+  {
+    "Callback": 272710374956080,
+    "Detail": null,
+    "Module": "CI",
+    "Symbol": null,
+    "Type": "PspCreateProcessNotifyRoutine",
+    "__children": []
+  },
+  {
+    "Callback": 272710402560320,
+    "Detail": null,
+    "Module": "dxgkrnl",
+    "Symbol": null,
+    "Type": "PspCreateProcessNotifyRoutine",
+    "__children": []
+  },
+  {
+    "Callback": 272710428343520,
+    "Detail": null,
+    "Module": "peauth",
+    "Symbol": null,
+    "Type": "PspCreateProcessNotifyRoutine",
+    "__children": []
+  },
+  {
+    "Callback": 272710429286256,
+    "Detail": null,
+    "Module": "KslD",
+    "Symbol": null,
+    "Type": "PspCreateProcessNotifyRoutine",
+    "__children": []
+  },
+  {
+    "Callback": 272710388543568,
+    "Detail": null,
+    "Module": "ndis",
+    "Symbol": null,
+    "Type": "KeBugCheckCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710394491936,
+    "Detail": null,
+    "Module": "fvevol",
+    "Symbol": null,
+    "Type": "KeBugCheckCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710387705232,
+    "Detail": null,
+    "Module": "VBoxGuest",
+    "Symbol": null,
+    "Type": "KeBugCheckCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710417682192,
+    "Detail": null,
+    "Module": "crashdmp",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710417662320,
+    "Detail": null,
+    "Module": "crashdmp",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710417662720,
+    "Detail": null,
+    "Module": "crashdmp",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710411567728,
+    "Detail": null,
+    "Module": "mssmbios",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710411567648,
+    "Detail": null,
+    "Module": "mssmbios",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710411567552,
+    "Detail": null,
+    "Module": "mssmbios",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710411567472,
+    "Detail": null,
+    "Module": "mssmbios",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710402776320,
+    "Detail": null,
+    "Module": "dxgkrnl",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710383003808,
+    "Detail": null,
+    "Module": "storport",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710397027024,
+    "Detail": null,
+    "Module": "CLASSPNP",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710379814496,
+    "Detail": null,
+    "Module": "pci",
+    "Symbol": "??_C@_1M@LOICPMOJ@?$AAb?$AAn?$AA?9?$AAI?$AAN@",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377212496,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710377213184,
+    "Detail": null,
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436864,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710376436784,
+    "Detail": null,
+    "Module": "WppRecorder",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359571792,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "EtwpBugCheckMultiPartCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710359368160,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "PopBlackBoxBugcheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710358816304,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "HvlpHvIdentityInfoCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710357202288,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "HalpMiscBugCheckCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710358880320,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "IoBugCheckTriageDumpDataCallback",
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710429290208,
+    "Detail": null,
+    "Module": "KslD",
+    "Symbol": null,
+    "Type": "KeBugCheckReasonCallbackListHead",
+    "__children": []
+  },
+  {
+    "Callback": 272710384326720,
+    "Detail": "Altitude: 425000",
+    "Module": "WdFilter",
+    "Symbol": null,
+    "Type": "CmRegisterCallbackEx",
+    "__children": []
+  },
+  {
+    "Callback": 272710356916128,
+    "Detail": null,
+    "Module": "ntoskrnl",
+    "Symbol": "ViCreateProcessCallback",
+    "Type": "GenericKernelCallback",
+    "__children": []
+  },
+  {
+    "Callback": 272710356827744,
+    "Detail": "\\Driver\\WMIxWDM",
+    "Module": "ntoskrnl",
+    "Symbol": "IopInvalidDeviceRequest",
+    "Type": "IoRegisterShutdownNotification",
+    "__children": []
+  },
+  {
+    "Callback": 272710377738432,
+    "Detail": "\\Driver\\SgrmAgent",
+    "Module": "SgrmAgent",
+    "Symbol": null,
+    "Type": "IoRegisterShutdownNotification",
+    "__children": []
+  },
+  {
+    "Callback": 272710375468144,
+    "Detail": null,
+    "Module": "cng",
+    "Symbol": null,
+    "Type": "GenericKernelCallback",
+    "__children": []
+  },
+  {
+    "Callback": 272710363134960,
+    "Detail": "\\FileSystem\\RAW",
+    "Module": "ntoskrnl",
+    "Symbol": "RawShutdown",
+    "Type": "IoRegisterShutdownNotification",
+    "__children": []
+  },
+  {
+    "Callback": 272710381685632,
+    "Detail": "\\Driver\\volmgr",
+    "Module": "volmgr",
+    "Symbol": null,
+    "Type": "IoRegisterShutdownNotification",
+    "__children": []
+  },
+  {
+    "Callback": 272710381026256,
+    "Detail": "\\Driver\\spaceport",
+    "Module": "spaceport",
+    "Symbol": null,
+    "Type": "IoRegisterShutdownNotification",
+    "__children": []
+  },
+  {
+    "Callback": 272710382328320,
+    "Detail": "\\Driver\\mountmgr",
+    "Module": "mountmgr",
+    "Symbol": "__xmm@7fffffffffffffff0000000000000000",
+    "Type": "IoRegisterShutdownNotification",
+    "__children": []
+  },
+  {
+    "Callback": 272710384475392,
+    "Detail": null,
+    "Module": "WdFilter",
+    "Symbol": null,
+    "Type": "GenericKernelCallback",
+    "__children": []
+  },
+  {
+    "Callback": 272710384419040,
+    "Detail": null,
+    "Module": "WdFilter",
+    "Symbol": null,
+    "Type": "GenericKernelCallback",
+    "__children": []
+  },
+  {
+    "Callback": 272710384362304,
+    "Detail": null,
+    "Module": "WdFilter",
+    "Symbol": null,
+    "Type": "GenericKernelCallback",
+    "__children": []
+  },
+  {
+    "Callback": 272710373718432,
+    "Detail": null,
+    "Module": "ksecdd",
+    "Symbol": null,
+    "Type": "GenericKernelCallback",
+    "__children": []
+  },
+  {
+    "Callback": 272710373721600,
+    "Detail": "\\Driver\\KSecDD",
+    "Module": "ksecdd",
+    "Symbol": "??_C@_15NFICGAJK@?$AAi?$AAd@",
+    "Type": "IoRegisterShutdownNotification",
+    "__children": []
+  },
+  {
+    "Callback": 272710384458320,
+    "Detail": null,
+    "Module": "WdFilter",
+    "Symbol": null,
+    "Type": "GenericKernelCallback",
+    "__children": []
+  },
+  {
+    "Callback": 272710396467504,
+    "Detail": null,
+    "Module": "iorate",
+    "Symbol": "EVENT_WHEA_LOG_ENTRY",
+    "Type": "GenericKernelCallback",
+    "__children": []
+  },
+  {
+    "Callback": 272710374956080,
+    "Detail": null,
+    "Module": "CI",
+    "Symbol": null,
+    "Type": "GenericKernelCallback",
+    "__children": []
+  },
+  {
+    "Callback": 272710402560320,
+    "Detail": null,
+    "Module": "dxgkrnl",
+    "Symbol": null,
+    "Type": "GenericKernelCallback",
+    "__children": []
+  },
+  {
+    "Callback": 272710404985184,
+    "Detail": "\\Driver\\DXGKrnl",
+    "Module": "dxgkrnl",
+    "Symbol": null,
+    "Type": "IoRegisterShutdownNotification",
+    "__children": []
+  },
+  {
+    "Callback": 272710390597088,
+    "Detail": null,
+    "Module": "tcpip",
+    "Symbol": null,
+    "Type": "GenericKernelCallback",
+    "__children": []
+  },
+  {
+    "Callback": 272710412472688,
+    "Detail": "\\Driver\\ahcache",
+    "Module": "ahcache",
+    "Symbol": null,
+    "Type": "IoRegisterShutdownNotification",
+    "__children": []
+  },
+  {
+    "Callback": 272710412331808,
+    "Detail": null,
+    "Module": "ahcache",
+    "Symbol": null,
+    "Type": "GenericKernelCallback",
+    "__children": []
+  },
+  {
+    "Callback": 272710376662800,
+    "Detail": "\\Driver\\USBHUB3",
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "IoRegisterShutdownNotification",
+    "__children": []
+  },
+  {
+    "Callback": 272710427349088,
+    "Detail": null,
+    "Module": "mmcss",
+    "Symbol": null,
+    "Type": "GenericKernelCallback",
+    "__children": []
+  },
+  {
+    "Callback": 272710428343520,
+    "Detail": null,
+    "Module": "peauth",
+    "Symbol": null,
+    "Type": "GenericKernelCallback",
+    "__children": []
+  },
+  {
+    "Callback": 272710429286256,
+    "Detail": null,
+    "Module": "KslD",
+    "Symbol": null,
+    "Type": "GenericKernelCallback",
+    "__children": []
+  },
+  {
+    "Callback": 272710429285936,
+    "Detail": null,
+    "Module": "KslD",
+    "Symbol": null,
+    "Type": "GenericKernelCallback",
+    "__children": []
+  },
+  {
+    "Callback": 272710429286096,
+    "Detail": null,
+    "Module": "KslD",
+    "Symbol": null,
+    "Type": "GenericKernelCallback",
+    "__children": []
+  },
+  {
+    "Callback": 272710429285776,
+    "Detail": null,
+    "Module": "KslD",
+    "Symbol": null,
+    "Type": "GenericKernelCallback",
+    "__children": []
+  },
+  {
+    "Callback": 272710376662800,
+    "Detail": "\\Driver\\KslD",
+    "Module": "Wdf01000",
+    "Symbol": null,
+    "Type": "IoRegisterShutdownNotification",
+    "__children": []
+  },
+  {
+    "Callback": 141107768987808,
+    "Detail": null,
+    "Module": "win32k",
+    "Symbol": null,
+    "Type": "GenericKernelCallback",
+    "__children": []
+  },
+  {
+    "Callback": 141107760749120,
+    "Detail": null,
+    "Module": "win32kbase",
+    "Symbol": null,
+    "Type": "GenericKernelCallback",
+    "__children": []
+  },
+  {
+    "Callback": 272710352012368,
+    "Detail": null,
+    "Module": "FLTMGR",
+    "Symbol": null,
+    "Type": "IoRegisterFsRegistrationChange",
+    "__children": []
+  }
+]
